@@ -17,10 +17,6 @@ firstItemOf(x) // => 'cat'
 ```javascript
 lastItemOf(x) // => 'shark'
 ```
-#### firstItemOf
-```javascript
-firstItemOf(x) // => 'cat'
-```
 #### nthItemOf
 ```javascript
 nthItemOf(x, 3) // => 'dolphin'
