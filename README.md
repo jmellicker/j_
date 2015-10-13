@@ -12,29 +12,32 @@ given this string:
 ---
 
 ```javascript
-firstItemOf(x) // => 'cat'```
+firstItemOf(x) // => 'cat'
 
----
+lastItemOf(x) // => 'shark'
 
-```lastItemOf(x) // => 'shark'```
+nthItemOf(x, 3) // => 'dolphin'
 
-```nthItemOf(x, 3) // => 'dolphin'```
+allButFirstItemOf(x) // => 'dog.dolphin.shark'
 
-```allButFirstItemOf(x) // => 'dog.dolphin.shark'```
-
-```allButLastItemOf(x) // => 'cat.dog.dolphin'```
+allButLastItemOf(x) // => 'cat.dog.dolphin'
+```
 
 All string ops will auto-detect a period or comma delimiter. If you are using a different delimiter, pass it as the second argument:
 
-```x = 'cat|dog|dolphin|shark'```
+```javascript
+x = 'cat|dog|dolphin|shark'
 
-```firstItemOf(x, '|') // => 'cat'```
+firstItemOf(x, '|') // => 'cat'
+
+```
 
 ## array ops
 
 Given this array:
 
-```xmen = [{
+```javascript
+xmen = [{
   name: 'Nightcrawler',
   power: 'Teleportation'
 }, {
@@ -46,11 +49,20 @@ Given this array:
 }, {
   name: 'Wolverine',
   power: 'Regeneration'
-}]```
+}]
+```
 
-```indexFromArray(xmen, 'power', 'Optic blast') // => 1```
+```javascript
 
-```queryArrayFirstMatch(xmen, 'power', 'Optic blast') // => { "name": "Cyclops", "power": "Optic blast" }```
+indexFromArray(xmen, 'power', 'Optic blast') // => 1
+
+queryArrayFirstMatch(xmen, 'power', 'Optic blast') // => { "name": "Cyclops", "power": "Optic blast" }
+
+```
 
 This one will search for partial strings:
-```queryArrayAllMatches(xmen, 'power', 'po') // => [ { "name": "Nightcrawler", "power": "Teleportation" }, { "name": "Rogue", "power": "Absorbing powers" } ]```
+```javascript
+
+queryArrayAllMatches(xmen, 'power', 'po') // => [ { "name": "Nightcrawler", "power": "Teleportation" }, { "name": "Rogue", "power": "Absorbing powers" } ]
+
+```
