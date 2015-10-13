@@ -63,21 +63,21 @@ xmen = [{
 ```
 
 #### indexFromArray
-Searches for a whole value for a specified key and returns the index
+Searches an array of objects for a whole value for a specified key and returns the index of the first matching element
 
 ```javascript
 indexFromArray(xmen, 'power', 'Optic blast') // => 1
 ```
 
 #### queryArrayFirstMatch
-Searches for a whole value for a specified key and returns the first matching array element
+Searches an array of objects for a whole value for a specified key and returns the first matching array element
 
 ```javascript
 queryArrayFirstMatch(xmen, 'power', 'Optic blast') // => { "name": "Cyclops", "power": "Optic blast" }
 ```
 
 #### queryArrayAllMatches
-Searches for a whole or partial value for a specified key and returns all matching array elements
+Searches an array of objects for a whole or partial value for a specified key and returns all matching array elements
 
 ```javascript
 queryArrayAllMatches(xmen, 'power', 'po') // => [ { "name": "Nightcrawler", "power": "Teleportation" }, { "name": "Rogue", "power": "Absorbing powers" } ]
