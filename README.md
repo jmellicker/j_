@@ -5,10 +5,16 @@ Just barely getting started.
 
 ## string ops
 
-given:
+given this string:
+
 ```x = 'cat.dog.dolphin.shark'```
 
-```firstItemOf(x) // => 'cat'```
+---
+
+```javascript
+firstItemOf(x) // => 'cat'```
+
+---
 
 ```lastItemOf(x) // => 'shark'```
 
@@ -18,7 +24,7 @@ given:
 
 ```allButLastItemOf(x) // => 'cat.dog.dolphin'```
 
-These ops will auto-detect a period or comma delimiter, if you are using a different delimiter, pass it as the second argument:
+All string ops will auto-detect a period or comma delimiter. If you are using a different delimiter, pass it as the second argument:
 
 ```x = 'cat|dog|dolphin|shark'```
 
@@ -26,7 +32,7 @@ These ops will auto-detect a period or comma delimiter, if you are using a diffe
 
 ## array ops
 
-Given
+Given this array:
 
 ```xmen = [{
   name: 'Nightcrawler',
