@@ -9,27 +9,37 @@ given this string:
 
 ```x = 'cat.dog.dolphin.shark'```
 
----
-
+#### firstItemOf
 ```javascript
 firstItemOf(x) // => 'cat'
-
+```
+#### lastItemOf
+```javascript
 lastItemOf(x) // => 'shark'
-
+```
+#### firstItemOf
+```javascript
+firstItemOf(x) // => 'cat'
+```
+#### nthItemOf
+```javascript
 nthItemOf(x, 3) // => 'dolphin'
-
+```
+#### allButFirstItemOf
+```javascript
 allButFirstItemOf(x) // => 'dog.dolphin.shark'
-
+```
+#### allButLastItemOf
+```javascript
 allButLastItemOf(x) // => 'cat.dog.dolphin'
 ```
 
-All string ops will auto-detect a period or comma delimiter. If you are using a different delimiter, pass it as the second argument:
+All string ops will auto-detect a period or comma delimiter. If you are using a different delimiter, pass it as the last argument:
 
 ```javascript
 x = 'cat|dog|dolphin|shark'
 
-firstItemOf(x, '|') // => 'cat'
-
+nthItemOf(x, 2, '|') // => 'dog'
 ```
 
 ## array ops
@@ -52,17 +62,23 @@ xmen = [{
 }]
 ```
 
+#### indexFromArray
+Searches for a whole value for a specified key and returns the index
+
 ```javascript
-
 indexFromArray(xmen, 'power', 'Optic blast') // => 1
-
-queryArrayFirstMatch(xmen, 'power', 'Optic blast') // => { "name": "Cyclops", "power": "Optic blast" }
-
 ```
 
-This one will search for partial strings:
+#### queryArrayFirstMatch
+Searches for a whole value for a specified key and returns the first matching array element
+
 ```javascript
+queryArrayFirstMatch(xmen, 'power', 'Optic blast') // => { "name": "Cyclops", "power": "Optic blast" }
+```
 
+#### queryArrayAllMatches
+Searches for a whole or partial value for a specified key and returns all matching array elements
+
+```javascript
 queryArrayAllMatches(xmen, 'power', 'po') // => [ { "name": "Nightcrawler", "power": "Teleportation" }, { "name": "Rogue", "power": "Absorbing powers" } ]
-
 ```
