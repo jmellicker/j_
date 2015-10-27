@@ -1,5 +1,6 @@
 # j_
-J - semantic ops for Javascript data objects and strings
+
+semantic ops for Javascript data objects and strings
 
 Just barely getting started. Play with j_ [here.](http://codepen.io/jmellicker/pen/qOmxyY?editors=001)
 
