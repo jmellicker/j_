@@ -78,3 +78,5 @@ Searches an array of objects for a whole or partial value for a specified key an
 ```javascript
 queryArrayAllMatches(xmen, 'power', 'po') // => [ { "name": "Nightcrawler", "power": "Teleportation" }, { "name": "Rogue", "power": "Absorbing powers" } ]
 ```
+#### uniqueKeysFromArray
+Returns an array of unique keys from an array of objects
