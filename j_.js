@@ -21,31 +21,32 @@ var j_ = {
     return string.slice(0, string.lastIndexOf(delimiter))
   },
   guessDelimiter: function(string) {
-     if (string.indexOf(',') > -1) {
-        return ','
-     } else if (string.indexOf('.') > -1) {
-        return '.'
-     } else {
-        return "error: no delimiter"
-      }
+    if (string.indexOf(',') > -1) {
+      return ','
+    } else if (string.indexOf('.') > -1) {
+      return '.'
+    } else {
+      return "error: no delimiter"
+    }
   },
-  
+
   // array operations
   indexFromArray: function(arr, key, value) {
-    
+
     if (arr.length == 0) return 'array has no length'
     if (key == '') return 'missing key'
     if (value == '') return 'missing value'
-    
-    var i = -1, test = ''
-    while (test !== value && i < arr.length-1) {
+
+    var i = -1,
+      test = ''
+    while (test !== value && i < arr.length - 1) {
       i++
       test = arr[i][key]
     }
-    
-    if (test !== value && i == arr.length-1) i = -1
+
+    if (test !== value && i == arr.length - 1) i = -1
     return i
- 
+
   },
   queryArrayFirstMatch: function(arr, key, value) {
     return arr[this.indexFromArray(arr, key, value)]
@@ -54,16 +55,28 @@ var j_ = {
     if (arr.length == 0) return 'array has no length'
     if (key == '') return 'missing key'
     if (value == '') return 'missing value'
-    
+
     winners = []
     arr.forEach(function(a) {
-      if (a[key].indexOf(value) > -1) {
+      if (a[key] && a[key].indexOf(value) > -1) {
         winners.push(a)
       }
-    })    
+    })
     return winners
   },
-  
+  uniqueKeysFromArray: function(arr, key) {
+    if (arr.length == 0) return 'array has no length'
+    if (key == '') return 'missing key'
+
+    winners = []
+    arr.forEach(function(a) {
+      if (winners.indexOf(a[key]) == -1) {
+        winners.push(a[key])
+      }
+    })
+    return winners
+  },
+
   // object operations
   arrayOfKeyValuesFromObject: function(obj, key) {
     arr = []
