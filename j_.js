@@ -77,7 +77,7 @@ var j_ = {
     },
     stringOfKeyValuesFromObject: function(obj, key) {
         if (Object.keys(obj).length > 0) {
-            return this.arrayOfKeyValuesFromObject(obj, key).join().replace(/,/g, ', ')
+            return this.arrayOfKeyValuesFromObject(obj, key).join(', ')
         }
         else {
             return ('object is empty')
