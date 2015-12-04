@@ -98,7 +98,11 @@ var j_ = {
             test = obj[objKeyArray[i]][key]
         }
 
-        if (test !== value && i == objKeyArray.length - 1) i = -1
-        return i 
+        if (test !== value && i == objKeyArray.length - 1) {
+          i = -1
+        } else {
+          return obj[objKeyArray[i]]
+        }
+        
     }
 }
