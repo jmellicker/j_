@@ -82,5 +82,23 @@ var j_ = {
         else {
             return ('object is empty')
         }
+    },
+    queryObjectFirstMatch: function(obj, key, value) {
+      
+        if (!obj) return 'object is empty'
+        if (key == '') return 'missing key'
+        if (value == '') return 'missing value'
+
+        objKeyArray = Object.keys(obj)
+        
+        var i = -1,
+            test = ''
+        while (test !== value && i < objKeyArray.length - 1) {
+            i++
+            test = obj[objKeyArray[i]][key]
+        }
+
+        if (test !== value && i == objKeyArray.length - 1) i = -1
+        return i 
     }
 }
