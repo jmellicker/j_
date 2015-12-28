@@ -27,6 +27,9 @@ var j_ = {
         else if (string.indexOf('.') > -1) {
             return '.'
         }
+        else if (string.indexOf('/') > -1) {
+            return '/'
+        }
         else {
             return "error: no delimiter"
         }
@@ -54,6 +57,19 @@ var j_ = {
         return arr[this.indexFromArray(arr, key, value)]
     },
     queryArrayAllMatches: function(arr, key, value) {
+        if (arr.length == 0) return 'array has no length'
+        if (key == '') return 'missing key'
+        if (value == '') return 'missing value'
+
+        var winners = []
+        arr.forEach(function(a) {
+            if (a[key] == value) {
+                winners.push(a)
+            }
+        })
+        return winners
+    },
+    queryArrayAllPartialMatches: function(arr, key, value) {
         if (arr.length == 0) return 'array has no length'
         if (key == '') return 'missing key'
         if (value == '') return 'missing value'
