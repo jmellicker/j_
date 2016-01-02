@@ -30,6 +30,9 @@ var j_ = {
         else if (string.indexOf('/') > -1) {
             return '/'
         }
+        else if (string.indexOf('|') > -1) {
+            return '|'
+        }
         else {
             return "error: no delimiter"
         }
