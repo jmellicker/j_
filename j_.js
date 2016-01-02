@@ -20,6 +20,12 @@ var j_ = {
         if (!delimiter) delimiter = this.guessDelimiter(string)
         return string.slice(0, string.lastIndexOf(delimiter))
     },
+    randomItemOf: function(string, delimiter) {
+        if (!delimiter) delimiter = this.guessDelimiter(string)
+        var arr = string.split(delimiter)
+        return arr[Math.floor(Math.random() * arr.length)]
+    },
+
     guessDelimiter: function(string) {
         if (string.indexOf(',') > -1) {
             return ','
@@ -29,9 +35,6 @@ var j_ = {
         }
         else if (string.indexOf('/') > -1) {
             return '/'
-        }
-        else if (string.indexOf('|') > -1) {
-            return '|'
         }
         else {
             return "error: no delimiter"
