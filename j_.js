@@ -1,49 +1,3 @@
-cart = {
-  "hs_DVD-MEH-JS22": {
-    "productName": "The Ultimate Swing Guitar Gypsy Jazz Guitar Lesson-DVD 2",
-    "productSKU": "hs_DVD-MEH-JS22",
-    "productPrice": 24.95,
-    "publisherID": 3,
-    "tags": "11,26,115,240,491,1027,2950",
-    "productID": 38675
-  },
-  "hs_fingerstyle1": {
-    "productName": "Essential Exercises for Fingerstyle Guitar",
-    "productSKU": "hs_fingerstyle1",
-    "productPrice": 24.95,
-    "publisherID": 3,
-    "tags": "34,467,45,67656,73,67",
-    "productID": 16025
-  },
-  "hs_fingerstyle2": {
-    "productName": "More Essential Exercises for Fingerstyle Guitar",
-    "productSKU": "hs_fingerstyle2",
-    "productPrice": 24.95,
-    "publisherID": 3,
-    "tags": "34,467,45,67656,73,67",
-    "productID": 16026
-  }
-}
-
-xmen = [{
-  name: 'Nightcrawler',
-  power: 'Teleportation'
-}, {
-  name: 'Cyclops',
-  power: 'Optic blast'
-}, {
-  name: 'Rogue',
-  power: 'Absorbing powers'
-}, {
-  name: 'Rogue',
-  power: 'Absorbing powers'
-}, {
-  name: 'Wolverine',
-  power: 'Regeneration'
-}]
-
-x = "this.that.foo.bar"
-
 var j_ = {
     // string operations
     firstItemOf: function(string, delimiter) {
@@ -66,12 +20,6 @@ var j_ = {
         if (!delimiter) delimiter = this.guessDelimiter(string)
         return string.slice(0, string.lastIndexOf(delimiter))
     },
-    randomItemOf: function(string, delimiter) {
-        if (!delimiter) delimiter = this.guessDelimiter(string)
-        var arr = string.split(delimiter)
-        return arr[Math.floor(Math.random() * arr.length)]
-    },
-
     guessDelimiter: function(string) {
         if (string.indexOf(',') > -1) {
             return ','
@@ -81,6 +29,9 @@ var j_ = {
         }
         else if (string.indexOf('/') > -1) {
             return '/'
+        }
+        else if (string.indexOf('|') > -1) {
+            return '|'
         }
         else {
             return "error: no delimiter"
@@ -174,53 +125,3 @@ var j_ = {
         
     }
 }
-
-r = new Ractive({
-  el: '#container',
-  template: '#template',
-  data: function() {
-    return ({
-
-    })
-  },
-
-  oninit: function() {
-    
-    // comment the below lines in and out to experiment
-
-    /*    this.k(j_.firstItemOf(x))*/
-    /*    this.k(j_.lastItemOf(x, '.'))*/
-    /*    this.k(j_.nthItemOf(x, 3))*/
-    /*    this.k(j_.allButLastItemOf(x))*/
-
-//        this.k(j_.indexFromArray(xmen, 'power', 'Regeneration'))
-    this.k(j_.randomItemOf(x))
-    /*    this.j(j_.queryArrayFirstMatch(xmen, 'power', 'Optic blast'))*/
-    /*    this.j(j_.queryArrayAllMatches(xmen, 'power', 'Hotdog eating'))*/
-/*        this.j(j_.uniqueKeysFromArray(xmen, 'power'))*/
-    
-    /*    this.k(j_.arrayOfKeyValuesFromObject(cart, 'productName'))*/
-/*    this.k(j_.stringOfKeyValuesFromObject(cart, 'productName'))*/
-    
-//   this.k(j_.queryObjectFirstMatch(cart,  'productName', 'More Essential Exercises for Fingerstyle Guitar'))
-   
-/*   this.k({} === true)*/
-
-  },
-
-  j: function(x) {
-    /*    console.log("______________________")*/
-    console.log(JSON.stringify(x, null, 2))
-    this.set('output', JSON.stringify(x, null, 2))
-  },
-
-  k: function(x) {
-    /*    console.log("______________________")*/
-    console.log(x)
-      /*    self.set('output', self.get('output') + '<br />' + x)*/
-    this.set('output', x)
-  }
-
-})
-
-console.log("______________________")
