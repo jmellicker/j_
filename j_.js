@@ -56,6 +56,11 @@ var j_ = {
         while (test !== value && i < arr.length - 1) {
             i++
             test = arr[i][key]
+            
+            if (arr[i][key] == value) {
+                k('match', arr[i][key], value)
+                k(arr[i])
+            }
         }
 
         if (test !== value && i == arr.length - 1) i = -1
