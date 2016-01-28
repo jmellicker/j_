@@ -136,7 +136,7 @@ var j_ = {
         
     },
     sortAnObj: function(objToSort, IDKeyString, sortFunc) {
-        if (!objToSort || !sortFunc || !IDKey) return false;
+        if (!objToSort || !sortFunc || !IDKeyString) return false;
         
         var sortArr = [];
         var sortedObj = {}
