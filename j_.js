@@ -146,5 +146,19 @@ var j_ = {
           return obj[objKeyArray[i]]
         }
         
+    },
+    sortAnObj: function(objToSort, IDKeyString, sortFunc) {
+        if (!objToSort || !sortFunc || !IDKeyString) return false;
+        
+        var sortArr = [];
+        var sortedObj = {}
+        Object.keys(objToSort).forEach(function(key) {
+            sortArr.push(objToSort[key])
+        })
+        sortArr.sort(sortFunc)
+        sortArr.forEach(function(item) {
+            sortedObj[item[IDKeyString]] = item
+        })
+        return sortedObj;
     }
 }
