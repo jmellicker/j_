@@ -96,18 +96,6 @@ var j_ = {
         })
         return winners
     },
-  
-    queryArrayAllUniqueValues: function(arr, key) {
-        if (arr.length == 0) return 'array has no length'
-        if (key == '') return 'missing key'
-
-        var uniques = {}
-        arr.forEach(function(a) {
-          uniques[a[key]] = true
-        })
-        
-        return Object.keys(uniques)
-    },
 
     // object operations
     arrayOfKeyValuesFromObject: function(obj, key) {
