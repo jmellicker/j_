@@ -108,6 +108,18 @@ var j_ = {
         
         return Object.keys(uniques)
     },
+    
+    queryArrayOneOfEach: function(arr, key) { // select distinct
+        if (arr.length == 0) return 'array has no length'
+        if (key == '') return 'missing key'
+
+        var uniques = {}
+        arr.forEach(function(a) {
+          uniques[a[key]] = a
+        })
+        
+        return uniques
+    },
 
     // object operations
     arrayOfKeyValuesFromObject: function(obj, key) {
