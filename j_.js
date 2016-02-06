@@ -158,5 +158,16 @@ var j_ = {
           return obj[objKeyArray[i]]
         }
         
+    },
+    convertObj2array: function(obj, cb) {
+    
+    var arr = []
+    
+    Object.keys(obj).forEach(function(key) {
+        arr.push(obj[key])
+    })
+    
+    cb(arr)
+    
     }
 }
