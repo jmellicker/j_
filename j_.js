@@ -58,8 +58,8 @@ var j_ = {
             test = arr[i][key]
             
             if (arr[i][key] == value) {
-                k('match', arr[i][key], value)
-                k(arr[i])
+                // k('match', arr[i][key], value)
+                // k(arr[i])
             }
         }
 
@@ -67,6 +67,26 @@ var j_ = {
         return i
 
     },
+    
+    sortArrayBy: function(arr, key2sortBy) {
+        
+       function dynamicSort(key2sortBy) {
+            var sortOrder = 1;
+            if(key2sortBy[0] === "-") {
+                sortOrder = -1;
+                key2sortBy = key2sortBy.substr(1);
+            }
+            return function (a,b) {
+                var result = (a[key2sortBy] < b[key2sortBy]) ? -1 : (a[key2sortBy] > b[key2sortBy]) ? 1 : 0;
+                return result * sortOrder;
+            }
+        }
+        
+        arr.sort(dynamicSort(key2sortBy))
+        
+        return arr
+    },
+    
     queryArrayFirstMatch: function(arr, key, value) {
         return arr[this.indexFromArray(arr, key, value)]
     },
@@ -108,7 +128,7 @@ var j_ = {
         
         return Object.keys(uniques)
     },
-    
+
     queryArrayOneOfEach: function(arr, key) { // select distinct
         if (arr.length == 0) return 'array has no length'
         if (key == '') return 'missing key'
@@ -159,7 +179,7 @@ var j_ = {
         }
         
     },
-    convertObj2array: function(obj, cb) {
+    convertObj2array: function(obj) {
     
     var arr = []
     
@@ -167,7 +187,7 @@ var j_ = {
         arr.push(obj[key])
     })
     
-    cb(arr)
+    return arr
     
     }
 }
