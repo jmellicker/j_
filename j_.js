@@ -47,9 +47,6 @@ var j_ = {
     // array operations
     indexFromArray: function(arr, key, value) {
 
-        if (arr.length == 0) return 'array has no length'
-        if (key == '') return 'missing key'
-        if (value == '') return 'missing value'
 
         var i = -1,
             test = ''
@@ -90,10 +87,8 @@ var j_ = {
     queryArrayFirstMatch: function(arr, key, value) {
         return arr[this.indexFromArray(arr, key, value)]
     },
+    
     queryArrayAllMatches: function(arr, key, value) {
-        if (arr.length == 0) return 'array has no length'
-        if (key == '') return 'missing key'
-        if (value == '') return 'missing value'
 
         var winners = []
         arr.forEach(function(a) {
@@ -103,14 +98,12 @@ var j_ = {
         })
         return winners
     },
+    
     queryArrayAllPartialMatches: function(arr, key, value) {
-        if (arr.length == 0) return 'array has no length'
-        if (key == '') return 'missing key'
-        if (value == '') return 'missing value'
 
         var winners = []
         arr.forEach(function(a) {
-            if (a[key].indexOf(value) > -1) {
+            if (a[key].toLowerCase().indexOf(value.toLowerCase()) > -1) {
                 winners.push(a)
             }
         })
@@ -118,9 +111,7 @@ var j_ = {
     },
   
     queryArrayAllUniqueValues: function(arr, key) {
-        if (arr.length == 0) return 'array has no length'
-        if (key == '') return 'missing key'
-
+        
         var uniques = {}
         arr.forEach(function(a) {
           uniques[a[key]] = true
@@ -130,9 +121,7 @@ var j_ = {
     },
 
     queryArrayOneOfEach: function(arr, key) { // select distinct
-        if (arr.length == 0) return 'array has no length'
-        if (key == '') return 'missing key'
-
+        
         var uniques = {}
         arr.forEach(function(a) {
           uniques[a[key]] = a
@@ -160,8 +149,6 @@ var j_ = {
     queryObjectFirstMatch: function(obj, key, value) {
       
         if (!obj) return 'object is empty'
-        if (key == '') return 'missing key'
-        if (value == '') return 'missing value'
 
         objKeyArray = Object.keys(obj)
         
@@ -189,5 +176,17 @@ var j_ = {
     
     return arr
     
+    },
+    uaid: function(firstLetter) {
+        return firstLetter + Date.now() + '-' + this.randomAnimal()
+    },
+    randomAnimal: function() {
+        var animals = ["aardvark","alligator","alpaca","antelope","ape","armadillo","baboon","badger","bat","bear","beaver","bison","boar","buffalo","bull","camel","canary","capybara","cat","chameleon","cheetah","chimpanzee","chinchilla","chipmunk","cougar","cow","coyote","crocodile","crow","deer","dingo","dog","donkey","dromedary","elephant","elk","ewe","ferret","finch","fish","fox","frog","gazelle","gila monster","giraffe","gnu","goat","gopher","gorilla","grizzly bear","ground hog","guinea pig","hamster","hedgehog","hippopotamus","hog","horse","hyena","ibex","iguana","impala","jackal","jaguar","kangaroo","koala","lamb","lemur","leopard","lion","lizard","llama","lynx","mandrill","marmoset","mink","mole","mongoose","monkey","moose","mountain goat","mouse","mule","muskrat","mustang","mynah bird","newt","ocelot","opossum","orangutan","oryx","otter","ox","panda","panther","parakeet","parrot","pig","platypus","polar bear","porcupine","porpoise","prairie dog","puma","rabbit","raccoon","ram","rat","reindeer","reptile","rhinoceros","salamander","seal","sheep","shrew","silver fox","skunk","sloth","snake","squirrel","tapir","tiger","toad","turtle","walrus","warthog","weasel","whale","wildcat","wolf","wolverine","wombat","woodchuck","yak","zebra"]
+        return animals[Math.round(Math.random() * animals.length)]
+        
+    },
+    openCleanWindow: function(url) {
+        var w = window.open(url, 'name', 'width=800,height=800,toolbar=0,menubar=0,location=100,status=1,scrollbars=1,resizable=1')
+        w.focus()
     }
 }
