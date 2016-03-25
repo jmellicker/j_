@@ -46,23 +46,15 @@ var j_ = {
 
     // array operations
     indexFromArray: function(arr, key, value) {
-
-
         var i = -1,
             test = ''
         while (test !== value && i < arr.length - 1) {
             i++
             test = arr[i][key]
-            
-            if (arr[i][key] == value) {
-                // k('match', arr[i][key], value)
-                // k(arr[i])
-            }
         }
 
         if (test !== value && i == arr.length - 1) i = -1
         return i
-
     },
     
     sortArrayBy: function(arr, key2sortBy) {
@@ -181,12 +173,20 @@ var j_ = {
         return firstLetter + Date.now() + '-' + this.randomAnimal()
     },
     randomAnimal: function() {
-        var animals = ["aardvark","alligator","alpaca","antelope","ape","armadillo","baboon","badger","bat","bear","beaver","bison","boar","buffalo","bull","camel","canary","capybara","cat","chameleon","cheetah","chimpanzee","chinchilla","chipmunk","cougar","cow","coyote","crocodile","crow","deer","dingo","dog","donkey","dromedary","elephant","elk","ewe","ferret","finch","fish","fox","frog","gazelle","gila monster","giraffe","gnu","goat","gopher","gorilla","grizzly bear","ground hog","guinea pig","hamster","hedgehog","hippopotamus","hog","horse","hyena","ibex","iguana","impala","jackal","jaguar","kangaroo","koala","lamb","lemur","leopard","lion","lizard","llama","lynx","mandrill","marmoset","mink","mole","mongoose","monkey","moose","mountain goat","mouse","mule","muskrat","mustang","mynah bird","newt","ocelot","opossum","orangutan","oryx","otter","ox","panda","panther","parakeet","parrot","pig","platypus","polar bear","porcupine","porpoise","prairie dog","puma","rabbit","raccoon","ram","rat","reindeer","reptile","rhinoceros","salamander","seal","sheep","shrew","silver fox","skunk","sloth","snake","squirrel","tapir","tiger","toad","turtle","walrus","warthog","weasel","whale","wildcat","wolf","wolverine","wombat","woodchuck","yak","zebra"]
-        return animals[Math.round(Math.random() * animals.length)]
+        var animals = ["aardvark","alligator","alpaca","antelope","ape","armadillo","baboon","badger","bat","bear","beaver","bison","boar","buffalo","bull","camel","canary","capybara","cat","chameleon","cheetah","chimpanzee","chinchilla","chipmunk","cougar","cow","coyote","crocodile","crow","deer","dingo","dog","donkey","dromedary","elephant","elk","ewe","ferret","finch","fish","fox","frog","gazelle","gilaMonster","giraffe","gnu","goat","gopher","gorilla","grizzlyBear","groundHog","guineaPig","hamster","hedgehog","hippopotamus","hog","horse","hyena","ibex","iguana","impala","jackal","jaguar","kangaroo","koala","lamb","lemur","leopard","lion","lizard","llama","lynx","mandrill","marmoset","mink","mole","mongoose","monkey","moose","mountainGoat","mouse","mule","muskrat","mustang","mynahBird","newt","ocelot","opossum","orangutan","oryx","otter","ox","panda","panther","parakeet","parrot","pig","platypus","polarBear","porcupine","porpoise","prairieDog","puma","rabbit","raccoon","ram","rat","reindeer","reptile","rhinoceros","salamander","seal","sheep","shrew","silverFox","skunk","sloth","snake","squirrel","tapir","tiger","toad","turtle","walrus","warthog","weasel","whale","wildcat","wolf","wolverine","wombat","woodchuck","yak","zebra"]
+        return animals[Math.floor(Math.random() * animals.length)]
         
     },
     openCleanWindow: function(url) {
-        var w = window.open(url, 'name', 'width=800,height=800,toolbar=0,menubar=0,location=100,status=1,scrollbars=1,resizable=1')
+        var w = window.open(url, 'name', 'width=800,height=800,toolbar=0,menubar=0,location=-100,status=1,scrollbars=1,resizable=1')
         w.focus()
+    },
+    randomInteger: function(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
+    decodeHTML: function(html) {
+        return html.replace(/&#(\d+);/g, function(match, dec) {
+            return String.fromCharCode(dec);
+        })
     }
 }
