@@ -177,6 +177,13 @@ var j_ = {
         return animals[Math.floor(Math.random() * animals.length)]
         
     },
+    ucid: function(firstLetter) {
+        return firstLetter + Date.now() + '-' + this.randomCrayolaColor()
+    },
+    randomCrayolaColor: function() {
+        var crayolaColors = ["almond", "antiqueBrass", "apricot", "aquamarine", "asparagus", "atomicTangerine", "bananaMania", "beaver", "bittersweet", "black", "blizzardBlue", "blue", "blueBell", "blueGray", "blueGreen", "blueViolet", "blush", "brickRed", "brown", "burntOrange", "burntSienna", "cadetBlue", "canary", "caribbeanGreen", "carnationPink", "cerise", "cerulean", "chestnut", "copper", "cornflower", "cottonCandy", "dandelion", "denim", "desertSand", "eggplant", "electricLime", "fern", "forestGreen", "fuchsia", "fuzzyWuzzy", "gold", "goldenrod", "grannySmithApple", "gray", "green", "greenBlue", "greenYellow", "hotMagenta", "inchworm", "indigo", "jazzberryJam", "jungleGreen", "laserLemon", "lavender", "lemonYellow", "macaroniAndCheese", "magenta", "magicMint", "mahogany", "maize", "manatee", "mangoTango", "maroon", "mauvelous", "melon", "midnightBlue", "mountainMeadow", "mulberry", "navyBlue", "neonCarrot", "oliveGreen", "orange", "orangeRed", "orangeYellow", "orchid", "outerSpace", "outrageousOrange", "pacificBlue", "peach", "periwinkle", "piggyPink", "pineGreen", "pinkFlamingo", "pinkSherbet", "plum", "purpleHeart", "purpleMountain'sMajesty", "purplePizzazz", "radicalRed", "rawSienna", "rawUmber", "razzleDazzleRose", "razzmatazz", "red", "redOrange", "redViolet", "robin'sEggBlue", "royalPurple", "salmon", "scarlet", "screamin'Green", "seaGreen", "sepia", "shadow", "shamrock", "shockingPink", "silver", "skyBlue", "springGreen", "sunglow", "sunsetOrange", "tan", "tealBlue", "thistle", "tickleMePink", "timberwolf", "tropicalRainForest", "tumbleweed", "turquoiseBlue", "unmellowYellow", "violet(purple)", "violetBlue", "violetRed", "vividTangerine", "vividViolet", "white", "wildBlueYonder", "wildStrawberry", "wildWatermelon", "wisteria", "yellow", "yellowGreen", "yellowOrange"]
+        return crayolaColors[Math.floor(Math.random() * crayolaColors.length)]
+    },
     openCleanWindow: function(url) {
         var w = window.open(url, 'name', 'width=800,height=800,toolbar=0,menubar=0,location=-100,status=1,scrollbars=1,resizable=1')
         w.focus()
@@ -188,5 +195,17 @@ var j_ = {
         return html.replace(/&#(\d+);/g, function(match, dec) {
             return String.fromCharCode(dec);
         })
+    },
+    removeKeyFromAllArrayObjs: function(arr, key) {
+        var uniques = {}
+        
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i][key]) delete arr[i][key]
+        }
+        
+        return arr
+    },
+    educateQuotes: function(string) {
+        preg_replace('\B"\b([^"\u201C\u201D\u201E\u201F\u2033\u2036\r\n]+)\b"\B', '?\1?', $text);
     }
 }
