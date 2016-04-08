@@ -46,34 +46,52 @@ var j_ = {
 
     // array operations
     indexFromArray: function(arr, key, value) {
-
-        if (arr.length == 0) return 'array has no length'
-        if (key == '') return 'missing key'
-        if (value == '') return 'missing value'
-
         var i = -1,
             test = ''
         while (test !== value && i < arr.length - 1) {
             i++
             test = arr[i][key]
-            
-            if (arr[i][key] == value) {
-                k('match', arr[i][key], value)
-                k(arr[i])
-            }
         }
 
         if (test !== value && i == arr.length - 1) i = -1
         return i
-
     },
+    
+    sortObjectBy: function(obj, keyToSortBy, keyedBy) {
+        var newObj = {}
+        var tempArr = this.convertObj2array(obj)
+        
+        this.sortArrayBy(tempArr, keyToSortBy).forEach(function(elem) {
+            newObj[elem[keyedBy]] = elem
+        })
+        
+        return obj
+    },
+    
+    sortArrayBy: function(arr, key2sortBy) {
+        
+       function dynamicSort(key2sortBy) {
+            var sortOrder = 1
+            if(key2sortBy[0] === "-") {
+                sortOrder = -1
+                key2sortBy = key2sortBy.substr(1)
+            }
+            return function (a,b) {
+                var result = (a[key2sortBy] < b[key2sortBy]) ? -1 : (a[key2sortBy] > b[key2sortBy]) ? 1 : 0
+                return result * sortOrder
+            }
+        }
+        
+        arr.sort(dynamicSort(key2sortBy))
+        
+        return arr
+    },
+    
     queryArrayFirstMatch: function(arr, key, value) {
         return arr[this.indexFromArray(arr, key, value)]
     },
+    
     queryArrayAllMatches: function(arr, key, value) {
-        if (arr.length == 0) return 'array has no length'
-        if (key == '') return 'missing key'
-        if (value == '') return 'missing value'
 
         var winners = []
         arr.forEach(function(a) {
@@ -83,18 +101,36 @@ var j_ = {
         })
         return winners
     },
+    
     queryArrayAllPartialMatches: function(arr, key, value) {
-        if (arr.length == 0) return 'array has no length'
-        if (key == '') return 'missing key'
-        if (value == '') return 'missing value'
 
         var winners = []
         arr.forEach(function(a) {
-            if (a[key].indexOf(value) > -1) {
+            if (a[key].toLowerCase().indexOf(value.toLowerCase()) > -1) {
                 winners.push(a)
             }
         })
         return winners
+    },
+  
+    queryArrayAllUniqueValues: function(arr, key) {
+        
+        var uniques = {}
+        arr.forEach(function(a) {
+          uniques[a[key]] = true
+        })
+        
+        return Object.keys(uniques)
+    },
+
+    queryArrayOneOfEach: function(arr, key) { // select distinct
+        
+        var uniques = {}
+        arr.forEach(function(a) {
+          uniques[a[key]] = a
+        })
+        
+        return uniques
     },
 
     // object operations
@@ -116,8 +152,6 @@ var j_ = {
     queryObjectFirstMatch: function(obj, key, value) {
       
         if (!obj) return 'object is empty'
-        if (key == '') return 'missing key'
-        if (value == '') return 'missing value'
 
         objKeyArray = Object.keys(obj)
         
@@ -135,18 +169,73 @@ var j_ = {
         }
         
     },
-    sortAnObj: function(objToSort, IDKeyString, sortFunc) {
-        if (!objToSort || !sortFunc || !IDKeyString) return false;
+    convertObj2array: function(obj) {
+    
+        var arr = []
         
-        var sortArr = [];
-        var sortedObj = {}
-        Object.keys(objToSort).forEach(function(key) {
-            sortArr.push(objToSort[key])
+        Object.keys(obj).forEach(function(key) {
+            arr.push(obj[key])
         })
-        sortArr.sort(sortFunc)
-        sortArr.forEach(function(item) {
-            sortedObj[item[IDKeyString]] = item
+        
+        return arr
+        
+    },
+    mergeObjects: function(src, dest) {
+        if (src === undefined) return dest
+        if (dest === undefined) return src
+        Object.keys(src).forEach(function(key) {
+            dest[key] = src[key]
         })
-        return sortedObj;
+        return dest
+    },
+    
+    // misc
+    uaid: function(firstLetter) {
+        return firstLetter + Date.now() + '-' + this.randomAnimal()
+    },
+    randomAnimal: function() {
+        var animals = ["aardvark","alligator","alpaca","antelope","ape","armadillo","baboon","badger","bat","bear","beaver","bison","boar","buffalo","bull","camel","canary","capybara","cat","chameleon","cheetah","chimpanzee","chinchilla","chipmunk","cougar","cow","coyote","crocodile","crow","deer","dingo","dog","donkey","dromedary","elephant","elk","ewe","ferret","finch","fish","fox","frog","gazelle","gilaMonster","giraffe","gnu","goat","gopher","gorilla","grizzlyBear","groundHog","guineaPig","hamster","hedgehog","hippopotamus","hog","horse","hyena","ibex","iguana","impala","jackal","jaguar","kangaroo","koala","lamb","lemur","leopard","lion","lizard","llama","lynx","mandrill","marmoset","mink","mole","mongoose","monkey","moose","mountainGoat","mouse","mule","muskrat","mustang","mynahBird","newt","ocelot","opossum","orangutan","oryx","otter","ox","panda","panther","parakeet","parrot","pig","platypus","polarBear","porcupine","porpoise","prairieDog","puma","rabbit","raccoon","ram","rat","reindeer","reptile","rhinoceros","salamander","seal","sheep","shrew","silverFox","skunk","sloth","snake","squirrel","tapir","tiger","toad","turtle","walrus","warthog","weasel","whale","wildcat","wolf","wolverine","wombat","woodchuck","yak","zebra"]
+        return animals[Math.floor(Math.random() * animals.length)]
+        
+    },
+    ucid: function(firstLetter) {
+        return firstLetter + Date.now() + '-' + this.randomCrayolaColor()
+    },
+    randomCrayolaColor: function() {
+        var crayolaColors = ["almond", "antiqueBrass", "apricot", "aquamarine", "asparagus", "atomicTangerine", "bananaMania", "beaver", "bittersweet", "black", "blizzardBlue", "blue", "blueBell", "blueGray", "blueGreen", "blueViolet", "blush", "brickRed", "brown", "burntOrange", "burntSienna", "cadetBlue", "canary", "caribbeanGreen", "carnationPink", "cerise", "cerulean", "chestnut", "copper", "cornflower", "cottonCandy", "dandelion", "denim", "desertSand", "eggplant", "electricLime", "fern", "forestGreen", "fuchsia", "fuzzyWuzzy", "gold", "goldenrod", "grannySmithApple", "gray", "green", "greenBlue", "greenYellow", "hotMagenta", "inchworm", "indigo", "jazzberryJam", "jungleGreen", "laserLemon", "lavender", "lemonYellow", "macaroniAndCheese", "magenta", "magicMint", "mahogany", "maize", "manatee", "mangoTango", "maroon", "mauvelous", "melon", "midnightBlue", "mountainMeadow", "mulberry", "navyBlue", "neonCarrot", "oliveGreen", "orange", "orangeRed", "orangeYellow", "orchid", "outerSpace", "outrageousOrange", "pacificBlue", "peach", "periwinkle", "piggyPink", "pineGreen", "pinkFlamingo", "pinkSherbet", "plum", "purpleHeart", "purpleMountainsMajesty", "purplePizzazz", "radicalRed", "rawSienna", "rawUmber", "razzleDazzleRose", "razzmatazz", "red", "redOrange", "redViolet", "robinEggBlue", "royalPurple", "salmon", "scarlet", "seaGreen", "sepia", "shadow", "shamrock", "shockingPink", "silver", "skyBlue", "springGreen", "sunglow", "sunsetOrange", "tan", "tealBlue", "thistle", "tickleMePink", "timberwolf", "tropicalRainForest", "tumbleweed", "turquoiseBlue", "unmellowYellow", "violet(purple)", "violetBlue", "violetRed", "vividTangerine", "vividViolet", "white", "wildBlueYonder", "wildStrawberry", "wildWatermelon", "wisteria", "yellow", "yellowGreen", "yellowOrange"]
+        return crayolaColors[Math.floor(Math.random() * crayolaColors.length)]
+    },
+    openCleanWindow: function(url) {
+        var w = window.open(url, 'name', 'width=800,height=800,toolbar=0,menubar=0,location=-100,status=1,scrollbars=1,resizable=1')
+        w.focus()
+    },
+    randomInteger: function(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
+    decodeHTML: function(html) {
+        return html.replace(/&#(\d+);/g, function(match, dec) {
+            return String.fromCharCode(dec);
+        })
+    },
+    removeKeyFromAllArrayObjs: function(arr, key) {
+        var uniques = {}
+        
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i][key]) delete arr[i][key]
+        }
+        
+        return arr
+    },
+    // educateQuotes: function(string) {
+    //     preg_replace('\B"\b([^"\u201C\u201D\u201E\u201F\u2033\u2036\r\n]+)\b"\B', '?\1?', $text);
+    // }
+    educateQuotes: function(string) {
+        // return string.replace(/"([^"]*)"/g, "“$1”")
+        return string.replace(/>([^>]+)</g, function(r) {
+              return r.replace(/(>|\s)"/g, "$1“")
+                      .replace(/"/g, "”")
+                      .replace(/("|\s)'/g, "$1‘")
+                      .replace(/'/g, "’");
+            });
     }
 }
