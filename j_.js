@@ -60,38 +60,20 @@ var j_ = {
     sortArrayBy: function(arr, key2sortBy) {
         
        function dynamicSort(key2sortBy) {
-            var sortOrder = 1;
+            var sortOrder = 1
             if(key2sortBy[0] === "-") {
-                sortOrder = -1;
-                key2sortBy = key2sortBy.substr(1);
+                sortOrder = -1
+                key2sortBy = key2sortBy.substr(1)
             }
             return function (a,b) {
-                var result = (a[key2sortBy] < b[key2sortBy]) ? -1 : (a[key2sortBy] > b[key2sortBy]) ? 1 : 0;
-                return result * sortOrder;
+                var result = (a[key2sortBy] < b[key2sortBy]) ? -1 : (a[key2sortBy] > b[key2sortBy]) ? 1 : 0
+                return result * sortOrder
             }
         }
         
         arr.sort(dynamicSort(key2sortBy))
         
         return arr
-    },
-    shuffleArray: function(array) {
-        var m = array.length,
-            t, i;
-    
-        // While there remain elements to shuffle…
-        while (m) {
-    
-            // Pick a remaining element…
-            i = Math.floor(Math.random() * m--);
-    
-            // And swap it with the current element.
-            t = array[m];
-            array[m] = array[i];
-            array[i] = t;
-        }
-    
-        return array;
     },
     
     queryArrayFirstMatch: function(arr, key, value) {
@@ -178,15 +160,36 @@ var j_ = {
     },
     convertObj2array: function(obj) {
     
-    var arr = []
-    
-    Object.keys(obj).forEach(function(key) {
-        arr.push(obj[key])
-    })
-    
-    return arr
-    
+        var arr = []
+        
+        Object.keys(obj).forEach(function(key) {
+            arr.push(obj[key])
+        })
+        
+        return arr
+        
     },
+    mergeObjects: function(src, dest) {
+        if (src === undefined) return dest
+        if (dest === undefined) return src
+        Object.keys(src).forEach(function(key) {
+            dest[key] = src[key]
+        })
+        return dest
+    },
+    
+    sortObjectBy: function(obj, keyToSortBy, keyedBy) {
+        var newObj = {}
+        var tempArr = this.convertObj2array(obj)
+        
+        this.sortArrayBy(tempArr, keyToSortBy).forEach(function(elem) {
+            newObj[elem[keyedBy]] = elem
+        })
+        
+        return newObj
+    },
+    
+    // misc
     uaid: function(firstLetter) {
         return firstLetter + Date.now() + '-' + this.randomAnimal()
     },
@@ -199,7 +202,7 @@ var j_ = {
         return firstLetter + Date.now() + '-' + this.randomCrayolaColor()
     },
     randomCrayolaColor: function() {
-        var crayolaColors = ["almond", "antiqueBrass", "apricot", "aquamarine", "asparagus", "atomicTangerine", "bananaMania", "beaver", "bittersweet", "black", "blizzardBlue", "blue", "blueBell", "blueGray", "blueGreen", "blueViolet", "blush", "brickRed", "brown", "burntOrange", "burntSienna", "cadetBlue", "canary", "caribbeanGreen", "carnationPink", "cerise", "cerulean", "chestnut", "copper", "cornflower", "cottonCandy", "dandelion", "denim", "desertSand", "eggplant", "electricLime", "fern", "forestGreen", "fuchsia", "fuzzyWuzzy", "gold", "goldenrod", "grannySmithApple", "gray", "green", "greenBlue", "greenYellow", "hotMagenta", "inchworm", "indigo", "jazzberryJam", "jungleGreen", "laserLemon", "lavender", "lemonYellow", "macaroniAndCheese", "magenta", "magicMint", "mahogany", "maize", "manatee", "mangoTango", "maroon", "mauvelous", "melon", "midnightBlue", "mountainMeadow", "mulberry", "navyBlue", "neonCarrot", "oliveGreen", "orange", "orangeRed", "orangeYellow", "orchid", "outerSpace", "outrageousOrange", "pacificBlue", "peach", "periwinkle", "piggyPink", "pineGreen", "pinkFlamingo", "pinkSherbet", "plum", "purpleHeart", "purpleMountain'sMajesty", "purplePizzazz", "radicalRed", "rawSienna", "rawUmber", "razzleDazzleRose", "razzmatazz", "red", "redOrange", "redViolet", "robin'sEggBlue", "royalPurple", "salmon", "scarlet", "screamin'Green", "seaGreen", "sepia", "shadow", "shamrock", "shockingPink", "silver", "skyBlue", "springGreen", "sunglow", "sunsetOrange", "tan", "tealBlue", "thistle", "tickleMePink", "timberwolf", "tropicalRainForest", "tumbleweed", "turquoiseBlue", "unmellowYellow", "violet(purple)", "violetBlue", "violetRed", "vividTangerine", "vividViolet", "white", "wildBlueYonder", "wildStrawberry", "wildWatermelon", "wisteria", "yellow", "yellowGreen", "yellowOrange"]
+        var crayolaColors = ["almond", "antiqueBrass", "apricot", "aquamarine", "asparagus", "atomicTangerine", "bananaMania", "beaver", "bittersweet", "black", "blizzardBlue", "blue", "blueBell", "blueGray", "blueGreen", "blueViolet", "blush", "brickRed", "brown", "burntOrange", "burntSienna", "cadetBlue", "canary", "caribbeanGreen", "carnationPink", "cerise", "cerulean", "chestnut", "copper", "cornflower", "cottonCandy", "dandelion", "denim", "desertSand", "eggplant", "electricLime", "fern", "forestGreen", "fuchsia", "fuzzyWuzzy", "gold", "goldenrod", "grannySmithApple", "gray", "green", "greenBlue", "greenYellow", "hotMagenta", "inchworm", "indigo", "jazzberryJam", "jungleGreen", "laserLemon", "lavender", "lemonYellow", "macaroniAndCheese", "magenta", "magicMint", "mahogany", "maize", "manatee", "mangoTango", "maroon", "mauvelous", "melon", "midnightBlue", "mountainMeadow", "mulberry", "navyBlue", "neonCarrot", "oliveGreen", "orange", "orangeRed", "orangeYellow", "orchid", "outerSpace", "outrageousOrange", "pacificBlue", "peach", "periwinkle", "piggyPink", "pineGreen", "pinkFlamingo", "pinkSherbet", "plum", "purpleHeart", "purpleMountainsMajesty", "purplePizzazz", "radicalRed", "rawSienna", "rawUmber", "razzleDazzleRose", "razzmatazz", "red", "redOrange", "redViolet", "robinEggBlue", "royalPurple", "salmon", "scarlet", "seaGreen", "sepia", "shadow", "shamrock", "shockingPink", "silver", "skyBlue", "springGreen", "sunglow", "sunsetOrange", "tan", "tealBlue", "thistle", "tickleMePink", "timberwolf", "tropicalRainForest", "tumbleweed", "turquoiseBlue", "unmellowYellow", "violet(purple)", "violetBlue", "violetRed", "vividTangerine", "vividViolet", "white", "wildBlueYonder", "wildStrawberry", "wildWatermelon", "wisteria", "yellow", "yellowGreen", "yellowOrange"]
         return crayolaColors[Math.floor(Math.random() * crayolaColors.length)]
     },
     openCleanWindow: function(url) {
@@ -223,7 +226,16 @@ var j_ = {
         
         return arr
     },
+    // educateQuotes: function(string) {
+    //     preg_replace('\B"\b([^"\u201C\u201D\u201E\u201F\u2033\u2036\r\n]+)\b"\B', '?\1?', $text);
+    // }
     educateQuotes: function(string) {
-        preg_replace('\B"\b([^"\u201C\u201D\u201E\u201F\u2033\u2036\r\n]+)\b"\B', '?\1?', $text);
+        // return string.replace(/"([^"]*)"/g, "“$1”")
+        return string.replace(/>([^>]+)</g, function(r) {
+              return r.replace(/(>|\s)"/g, "$1“")
+                      .replace(/"/g, "”")
+                      .replace(/("|\s)'/g, "$1‘")
+                      .replace(/'/g, "’");
+            });
     }
 }
