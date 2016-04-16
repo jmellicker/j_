@@ -65,7 +65,7 @@ var j_ = {
             newObj[elem[keyedBy]] = elem
         })
         
-        return obj
+        return newObj
     },
     
     sortArrayBy: function(arr, key2sortBy) {
