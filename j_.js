@@ -122,14 +122,25 @@ var j_ = {
         return uniques
     },
 
+    queryArrayMaxValue: function(arr, key) {
+    
+        var res = Math.max.apply(Math,array.map(function(o){return o[key]}))
+        var obj = array.find(function(o){ return o[key] == res})
+
+        return obj
+    },
+
     // object operations
     arrayOfKeyValuesFromObject: function(obj, key) {
+
         var arr = []
         Object.keys(obj).forEach(function(k) {
             if (obj[k][key]) arr.push(obj[k][key])
         })
         return arr
+
     },
+
     stringOfKeyValuesFromObject: function(obj, key) {
         if (Object.keys(obj).length > 0) {
             return this.arrayOfKeyValuesFromObject(obj, key).join(', ')
@@ -179,14 +190,26 @@ var j_ = {
     },
     
     sortObjectBy: function(obj, keyToSortBy, keyedBy) {
+        // k(obj, keyToSortBy, keyedBy)
         var newObj = {}
         var tempArr = this.convertObj2array(obj)
         
         this.sortArrayBy(tempArr, keyToSortBy).forEach(function(elem) {
-            newObj[elem[keyedBy]] = elem
+            var key = elem[keyedBy]
+            // k(elem, key)
+            newObj[key] = elem
         })
         
         return newObj
+    },
+    
+    addKeyToTopOfObject: function(obj, newKey) {
+        
+        Object.keys(obj).forEach(function(k) {
+            newKey[k] = obj[k]
+        })
+        
+        return newKey
     },
     
     // misc
@@ -226,9 +249,6 @@ var j_ = {
         
         return arr
     },
-    // educateQuotes: function(string) {
-    //     preg_replace('\B"\b([^"\u201C\u201D\u201E\u201F\u2033\u2036\r\n]+)\b"\B', '?\1?', $text);
-    // }
     educateQuotes: function(string) {
         // return string.replace(/"([^"]*)"/g, "“$1”")
         return string.replace(/>([^>]+)</g, function(r) {
@@ -237,5 +257,6 @@ var j_ = {
                       .replace(/("|\s)'/g, "$1‘")
                       .replace(/'/g, "’");
             });
-    }
+    },
+    
 }
