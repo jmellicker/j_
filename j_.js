@@ -129,6 +129,26 @@ var j_ = {
 
         return obj
     },
+    
+    shuffleArray: function(array) {
+        var currentIndex = array.length,
+            temporaryValue, randomIndex;
+    
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+    
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+    
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+    
+        return array;
+    },
 
     // object operations
     arrayOfKeyValuesFromObject: function(obj, key) {
@@ -216,30 +236,41 @@ var j_ = {
     uaid: function(firstLetter) {
         return firstLetter + Date.now() + '-' + this.randomAnimal()
     },
+    
     randomAnimal: function() {
         var animals = ["aardvark","alligator","alpaca","antelope","ape","armadillo","baboon","badger","bat","bear","beaver","bison","boar","buffalo","bull","camel","canary","capybara","cat","chameleon","cheetah","chimpanzee","chinchilla","chipmunk","cougar","cow","coyote","crocodile","crow","deer","dingo","dog","donkey","dromedary","elephant","elk","ewe","ferret","finch","fish","fox","frog","gazelle","gilaMonster","giraffe","gnu","goat","gopher","gorilla","grizzlyBear","groundHog","guineaPig","hamster","hedgehog","hippopotamus","hog","horse","hyena","ibex","iguana","impala","jackal","jaguar","kangaroo","koala","lamb","lemur","leopard","lion","lizard","llama","lynx","mandrill","marmoset","mink","mole","mongoose","monkey","moose","mountainGoat","mouse","mule","muskrat","mustang","mynahBird","newt","ocelot","opossum","orangutan","oryx","otter","ox","panda","panther","parakeet","parrot","pig","platypus","polarBear","porcupine","porpoise","prairieDog","puma","rabbit","raccoon","ram","rat","reindeer","reptile","rhinoceros","salamander","seal","sheep","shrew","silverFox","skunk","sloth","snake","squirrel","tapir","tiger","toad","turtle","walrus","warthog","weasel","whale","wildcat","wolf","wolverine","wombat","woodchuck","yak","zebra"]
         return animals[Math.floor(Math.random() * animals.length)]
-        
     },
+    
     ucid: function(firstLetter) {
         return firstLetter + Date.now() + '-' + this.randomCrayolaColor()
     },
+    
     randomCrayolaColor: function() {
         var crayolaColors = ["almond", "antiqueBrass", "apricot", "aquamarine", "asparagus", "atomicTangerine", "bananaMania", "beaver", "bittersweet", "black", "blizzardBlue", "blue", "blueBell", "blueGray", "blueGreen", "blueViolet", "blush", "brickRed", "brown", "burntOrange", "burntSienna", "cadetBlue", "canary", "caribbeanGreen", "carnationPink", "cerise", "cerulean", "chestnut", "copper", "cornflower", "cottonCandy", "dandelion", "denim", "desertSand", "eggplant", "electricLime", "fern", "forestGreen", "fuchsia", "fuzzyWuzzy", "gold", "goldenrod", "grannySmithApple", "gray", "green", "greenBlue", "greenYellow", "hotMagenta", "inchworm", "indigo", "jazzberryJam", "jungleGreen", "laserLemon", "lavender", "lemonYellow", "macaroniAndCheese", "magenta", "magicMint", "mahogany", "maize", "manatee", "mangoTango", "maroon", "mauvelous", "melon", "midnightBlue", "mountainMeadow", "mulberry", "navyBlue", "neonCarrot", "oliveGreen", "orange", "orangeRed", "orangeYellow", "orchid", "outerSpace", "outrageousOrange", "pacificBlue", "peach", "periwinkle", "piggyPink", "pineGreen", "pinkFlamingo", "pinkSherbet", "plum", "purpleHeart", "purpleMountainsMajesty", "purplePizzazz", "radicalRed", "rawSienna", "rawUmber", "razzleDazzleRose", "razzmatazz", "red", "redOrange", "redViolet", "robinEggBlue", "royalPurple", "salmon", "scarlet", "seaGreen", "sepia", "shadow", "shamrock", "shockingPink", "silver", "skyBlue", "springGreen", "sunglow", "sunsetOrange", "tan", "tealBlue", "thistle", "tickleMePink", "timberwolf", "tropicalRainForest", "tumbleweed", "turquoiseBlue", "unmellowYellow", "violet(purple)", "violetBlue", "violetRed", "vividTangerine", "vividViolet", "white", "wildBlueYonder", "wildStrawberry", "wildWatermelon", "wisteria", "yellow", "yellowGreen", "yellowOrange"]
         return crayolaColors[Math.floor(Math.random() * crayolaColors.length)]
     },
+
+    randomSuccessQuote: function() {
+        var quotes = ['"If you set your goals ridiculously high and it’s a failure, you will fail above everyone else’s success." - James Cameron', '"Success usually comes to those who are too busy to be looking for it." - Henry David Thoreau', '"Things work out best for those who make the best of how things work out." - John Wooden', '"If you are not willing to risk the usual, you will have to settle for the ordinary." - Jim Rohn', '"All our dreams can come true if we have the courage to pursue them." - Walt Disney', '"If you are willing to do more than you are paid to do, eventually you will be paid to do more than you do." - Anonymous', '"Success is walking from failure to failure with no loss of enthusiasm." - Winston Churchill', '"Whenever you see a successful person, you only see the public glories, never the private sacrifices to reach them." - Vaibhav Shah', '"Opportunities don’t happen. You create them." - Chris Grosser', '"It is not the strongest of the species that survive, nor the most intelligent, but the one most responsive to change." - Charles Darwin', '"The best revenge is massive success." - Frank Sinatra', '"I have not failed. I’ve just found 10,000 ways that won’t work." - Thomas Edison', '"A successful man is one who can lay a firm foundation with the bricks others have thrown at him." - David Brinkley', '"The whole secret of a successful life is to find out what is one’s destiny to do, and then do it." - Henry Ford', '"If you’re going through hell, keep going." - Winston Churchill', '"What seems to us as bitter trials are often blessings in disguise." - Oscar Wilde', '"The distance between insanity and genius is measured only by success." - Bruce Feirstein', '"Don’t be afraid to give up the good to go for the great." - John D. Rockefeller', '"If you can’t explain it simply, you don’t understand it well enough." - Albert Einstein', '"Start where you are. Use what you have. Do what you can." - Arthur Ashe', '"People ask, "What’s the best role you’ve ever played?" "The next one." - Kevin Kline', '"I find that the harder I work, the more luck I seem to have." - Thomas Jefferson', '"The starting point of all achievement is desire." - Napoleon Hill', '"Success is the sum of small efforts, repeated day-in and day-out." - Robert Collier', '"All progress takes place outside the comfort zone." - Michael John Bobak', '"You may only succeed if you desire succeeding; you may only fail if you do not mind failing." - Philippos', '"Courage is resistance to fear, mastery of fear--not absence of fear." - Mark Twain', '"Only put off until tomorrow what you are willing to die having left undone." - Pablo Picasso', '"We become what we think about most of the time, and that’s the strangest secret." - Earl Nightingale', '"The only place where success comes before work is in the dictionary." - Vidal Sassoon', '"Though no one can go back and make a brand-new start, anyone can start from now and make a brand-new ending." - Carl Bard', '"The successful warrior is the average man, with laser-like focus." - Bruce Lee', '"Rarely have I seen a situation where doing less than the other guy is a good strategy." - Jimmy Spithill', '"Motivation is what gets you started. Habit is what keeps you going." - Jim Ryun', '"Be content to act, and leave the talking to others." - Baltasar', '"You may have to fight a battle more than once to win it." - Margaret Thatcher', '"Be patient with yourself. Self-growth is tender; it’s holy ground. There’s no greater investment." - Stephen Covey', '"I owe my success to having listened respectfully to the very best advice, and then going away and doing the exact opposite." - G. K. Chesterton', '"Many of life’s failures are people who did not realize how close they were to success when they gave up." - Thomas A. Edison', '"The greater the artist, the greater the doubt. Perfect confidence is granted to the less talented as a consolation prize." - Robert Hughes', '"What would you attempt to do if you knew you would not fail?" Robert Schuller', '"Always bear in mind that your own resolution to success is more important than any other one thing." - Abraham Lincoln', '"Successful and unsuccessful people do not vary greatly in their abilities. They vary in their desires to reach their potential." - John Maxwell', '"Logic will get you from A to B. Imagination will take you everywhere." - Albert Einstein', '"Success is just a war of attrition. If you just stick around long enough, eventually something is going to happen." - Dax Shepard', '"My tombstone? I’m thinking something along the lines of, "Geez, he was just here a minute ago." George Carlin', '"Success is nothing more than a few simple disciplines, practiced every day." - Jim Rohn', '"I’ve failed over and over and over again in my life and that is why I succeed." - Michael Jordan', '"Action is the foundational key to all success."  - Pablo Picasso', '"The starting point of all achievement is desire." - Napoleon Hill', '"Success consists of going from failure to failure without loss of enthusiasm." - Winston Churchill', '"In order to attain the impossible, one must attempt the absurd." - Miguel de Cervantes', '"Success is simple. Do what’s right, the right way, at the right time." = Arnold H. Glasow']
+        return quotes[Math.floor(Math.random() * quotes.length)]
+    },
+    
     openCleanWindow: function(url) {
         var w = window.open(url, 'name', 'width=800,height=800,toolbar=0,menubar=0,location=-100,status=1,scrollbars=1,resizable=1')
         w.focus()
     },
+    
     randomInteger: function(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     },
+    
     decodeHTML: function(html) {
         return html.replace(/&#(\d+);/g, function(match, dec) {
             return String.fromCharCode(dec);
         })
     },
+    
     removeKeyFromAllArrayObjs: function(arr, key) {
         var uniques = {}
         
@@ -249,6 +280,7 @@ var j_ = {
         
         return arr
     },
+    
     educateQuotes: function(string) {
         // return string.replace(/"([^"]*)"/g, "“$1”")
         return string.replace(/>([^>]+)</g, function(r) {
@@ -257,6 +289,5 @@ var j_ = {
                       .replace(/("|\s)'/g, "$1‘")
                       .replace(/'/g, "’");
             });
-    },
-    
+    }
 }
