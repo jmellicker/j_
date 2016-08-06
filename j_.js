@@ -46,11 +46,13 @@ var j_ = {
 
     // array operations
     indexFromArray: function(arr, key, value) {
-        var i = -1,
-            test = ''
+        var i = -1
+        var test = ''
+            
         while (test !== value && i < arr.length - 1) {
             i++
             test = arr[i][key]
+            // k('test is', test, '=', value)
         }
 
         if (test !== value && i == arr.length - 1) i = -1
@@ -282,7 +284,6 @@ var j_ = {
     },
     
     educateQuotes: function(string) {
-        // return string.replace(/"([^"]*)"/g, "“$1”")
         return string.replace(/>([^>]+)</g, function(r) {
               return r.replace(/(>|\s)"/g, "$1“")
                       .replace(/"/g, "”")
