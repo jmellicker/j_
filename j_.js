@@ -132,6 +132,11 @@ var j_ = {
         return obj
     },
     
+    removeFirstMatchFromArray: function(arr, key, value) {
+        var x = arr.splice(this.indexFromArray(arr, key, value), 1)
+        return arr
+    },
+    
     shuffleArray: function(array) {
         var currentIndex = array.length,
             temporaryValue, randomIndex;
@@ -284,6 +289,7 @@ var j_ = {
     },
     
     educateQuotes: function(string) {
+        // return string.replace(/"([^"]*)"/g, "“$1”")
         return string.replace(/>([^>]+)</g, function(r) {
               return r.replace(/(>|\s)"/g, "$1“")
                       .replace(/"/g, "”")
