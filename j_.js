@@ -46,6 +46,7 @@ var j_ = {
 
     // array operations
     indexFromArray: function(arr, key, value) {
+        // console.log(arr, key, value)
         var i = -1
         var test = ''
             
@@ -196,6 +197,20 @@ var j_ = {
         }
         
     },
+    removeMatchedObjectsFromArray: function(arr, key, valueArr) {
+        if (valueArr.constructor !== Array) valueArr = valueArr.split(',')
+        
+        var newArr = []
+        
+        for (var i = 0; i < arr.length; i++) {
+            if (valueArr.indexOf(arr[i][key]) < 0) {
+                newArr.push(arr[i])
+            }
+        }
+        return newArr
+        
+    },
+    
     convertObj2array: function(obj) {
     
         var arr = []
@@ -241,7 +256,7 @@ var j_ = {
     
     // misc
     uaid: function(firstLetter) {
-        return firstLetter + Date.now() + '-' + this.randomAnimal()
+        return firstLetter + '_' + Date.now() + '_' + this.randomAnimal()
     },
     
     randomAnimal: function() {
@@ -250,12 +265,27 @@ var j_ = {
     },
     
     ucid: function(firstLetter) {
-        return firstLetter + Date.now() + '-' + this.randomCrayolaColor()
+        return firstLetter + '_' + Date.now() + '_' + this.randomCrayolaColor()
     },
     
     randomCrayolaColor: function() {
-        var crayolaColors = ["almond", "antiqueBrass", "apricot", "aquamarine", "asparagus", "atomicTangerine", "bananaMania", "beaver", "bittersweet", "black", "blizzardBlue", "blue", "blueBell", "blueGray", "blueGreen", "blueViolet", "blush", "brickRed", "brown", "burntOrange", "burntSienna", "cadetBlue", "canary", "caribbeanGreen", "carnationPink", "cerise", "cerulean", "chestnut", "copper", "cornflower", "cottonCandy", "dandelion", "denim", "desertSand", "eggplant", "electricLime", "fern", "forestGreen", "fuchsia", "fuzzyWuzzy", "gold", "goldenrod", "grannySmithApple", "gray", "green", "greenBlue", "greenYellow", "hotMagenta", "inchworm", "indigo", "jazzberryJam", "jungleGreen", "laserLemon", "lavender", "lemonYellow", "macaroniAndCheese", "magenta", "magicMint", "mahogany", "maize", "manatee", "mangoTango", "maroon", "mauvelous", "melon", "midnightBlue", "mountainMeadow", "mulberry", "navyBlue", "neonCarrot", "oliveGreen", "orange", "orangeRed", "orangeYellow", "orchid", "outerSpace", "outrageousOrange", "pacificBlue", "peach", "periwinkle", "piggyPink", "pineGreen", "pinkFlamingo", "pinkSherbet", "plum", "purpleHeart", "purpleMountainsMajesty", "purplePizzazz", "radicalRed", "rawSienna", "rawUmber", "razzleDazzleRose", "razzmatazz", "red", "redOrange", "redViolet", "robinEggBlue", "royalPurple", "salmon", "scarlet", "seaGreen", "sepia", "shadow", "shamrock", "shockingPink", "silver", "skyBlue", "springGreen", "sunglow", "sunsetOrange", "tan", "tealBlue", "thistle", "tickleMePink", "timberwolf", "tropicalRainForest", "tumbleweed", "turquoiseBlue", "unmellowYellow", "violet(purple)", "violetBlue", "violetRed", "vividTangerine", "vividViolet", "white", "wildBlueYonder", "wildStrawberry", "wildWatermelon", "wisteria", "yellow", "yellowGreen", "yellowOrange"]
+        var crayolaColors = ["almond", "antiqueBrass", "apricot", "aquamarine", "asparagus", "atomicTangerine", "bananaMania", "beaver", "bittersweet", "black", "blizzardBlue", "blue", "blueBell", "blueGray", "blueGreen", "blueViolet", "blush", "brickRed", "brown", "burntOrange", "burntSienna", "cadetBlue", "canary", "caribbeanGreen", "carnationPink", "cerise", "cerulean", "chestnut", "copper", "cornflower", "cottonCandy", "dandelion", "denim", "desertSand", "eggplant", "electricLime", "fern", "forestGreen", "fuchsia", "fuzzyWuzzy", "gold", "goldenrod", "grannySmithApple", "gray", "green", "greenBlue", "greenYellow", "hotMagenta", "inchworm", "indigo", "jazzberryJam", "jungleGreen", "laserLemon", "lavender", "lemonYellow", "macaroniAndCheese", "magenta", "magicMint", "mahogany", "maize", "manatee", "mangoTango", "maroon", "mauvelous", "melon", "midnightBlue", "mountainMeadow", "mulberry", "navyBlue", "neonCarrot", "oliveGreen", "orange", "orangeRed", "orangeYellow", "orchid", "outerSpace", "outrageousOrange", "pacificBlue", "peach", "periwinkle", "piggyPink", "pineGreen", "pinkFlamingo", "pinkSherbet", "plum", "purpleHeart", "purpleMountainsMajesty", "purplePizzazz", "radicalRed", "rawSienna", "rawUmber", "razzleDazzleRose", "razzmatazz", "red", "redOrange", "redViolet", "robinEggBlue", "royalPurple", "salmon", "scarlet", "seaGreen", "sepia", "shadow", "shamrock", "shockingPink", "silver", "skyBlue", "springGreen", "sunglow", "sunsetOrange", "tan", "tealBlue", "thistle", "tickleMePink", "timberwolf", "tropicalRainForest", "tumbleweed", "turquoiseBlue", "unmellowYellow", "violetpurple", "violetBlue", "violetRed", "vividTangerine", "vividViolet", "white", "wildBlueYonder", "wildStrawberry", "wildWatermelon", "wisteria", "yellow", "yellowGreen", "yellowOrange"]
         return crayolaColors[Math.floor(Math.random() * crayolaColors.length)]
+    },
+    
+    objSub: function(obj, subVars) {
+        obj = JSON.stringify(obj)
+        obj = this.subVars(obj, subVars)
+        obj = JSON.parse(obj)
+        return obj
+    },
+    
+    subVars: function(template, varsObj) {
+        for (var p in varsObj) {
+            var reg = new RegExp('{{'+p+'}}', "g")
+            template = template.replace(reg, varsObj[p])
+        }
+        return template
     },
 
     randomSuccessQuote: function() {
