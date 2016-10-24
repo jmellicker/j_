@@ -302,6 +302,14 @@ var j_ = {
         w.focus()
     },
     
+    fillCleanWindowWithHTML: function(name) {
+        var w = window.open('', name || '', 'width=800,height=800,toolbar=0,menubar=0,location=-100,status=1,scrollbars=1,resizable=1')
+        w.focus()
+        
+        return w
+    },
+
+    
     randomInteger: function(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     },
@@ -341,6 +349,18 @@ var j_ = {
     straightenQuotes: function(string) {
         return string.replace(/[“”]/g, "\"").replace(/[‘’]/g, "'")
              
+    },
+    
+    dashify: function(str) {
+        str = str.replace(/([a-z])([A-Z])/g, '$1-$2')
+        str = str.replace(/[ \t\W]/g, '-')
+        str = str.replace(/^-+|-+$/g, '')
+        return str.toLowerCase()
+    },
+    
+    validEmailAddress: function(string) {
+        var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        return re.test(string)
     },
     
     subVars: function(template, varsObj) {
