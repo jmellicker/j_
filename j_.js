@@ -291,6 +291,10 @@ var j_ = {
         obj = JSON.parse(obj)
         return obj
     },
+    
+    removeSpaces: function(str) {
+        return str.replace(/\s+/g, '')
+    },
 
     subVars: function(template, varsObj) {
         for (var p in varsObj) {
