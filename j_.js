@@ -259,6 +259,41 @@ var j_ = {
         return newKey
     },
     
+    createTableFromUnstructuredData: function(data) {
+        
+        var columnNames = {}
+        var gridData = []
+        
+        data.forEach(function(doc) {
+            Object.keys(doc).forEach(function(key) {
+                columnNames[key] = key
+            })
+        })
+        
+        columnNames = Object.keys(columnNames)
+        
+        var newRow
+        
+        data.forEach(function(doc) {
+            newRow = {
+                columns: []
+            }
+            columnNames.forEach(function(columnName) {
+                if (typeof doc[columnName] === 'object') {
+                    newRow.columns.push(JSON.stringify(doc[columnName]), null, 2)
+                } else {
+                    newRow.columns.push(doc[columnName])
+                }
+            })
+            gridData.push(newRow)
+        })
+        
+        return {
+            columnNames: columnNames,
+            gridData: gridData
+        }
+    },
+    
     // misc
     randomAlphaNumeric: function(length) {
         var result = ''
@@ -320,7 +355,6 @@ var j_ = {
 
         return w
     },
-
 
     randomInteger: function(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
