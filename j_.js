@@ -235,6 +235,10 @@ var j_ = {
         })
         return dest
     },
+    
+    cloneObject: function(obj) {
+        return JSON.parse(JSON.stringify(obj))
+    },
 
     sortObjectBy: function(obj, keyToSortBy, keyedBy) {
         // k(obj, keyToSortBy, keyedBy)
