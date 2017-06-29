@@ -31,7 +31,7 @@ allButFirstItemOf(x) // => 'dog.dolphin.shark'
 allButLastItemOf(x) // => 'cat.dog.dolphin'
 ```
 
-All string ops will auto-detect a period or comma delimiter. If you are using a different delimiter, pass it as the last argument:
+All ops will auto-detect ',' '.' '/' & '|' in that order. For a different delimiter, pass it as the last argument:
 
 ```javascript
 x = 'cat|dog|dolphin|shark'
@@ -40,6 +40,8 @@ nthItemOf(x, 2, '|') // => 'dog'
 ```
 
 ## array ops
+
+j_ array ops only operate on flat object keys in an array.
 
 Given this array:
 
@@ -79,5 +81,8 @@ Searches an array of objects for a whole or partial value for a specified key an
 ```javascript
 queryArrayAllMatches(xmen, 'power', 'po') // => [ { "name": "Nightcrawler", "power": "Teleportation" }, { "name": "Rogue", "power": "Absorbing powers" } ]
 ```
+#### sortArrayBy
+Returns an array of unique keys from an array of objects
+
 #### uniqueKeysFromArray
 Returns an array of unique keys from an array of objects
