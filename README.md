@@ -4,6 +4,10 @@ semantic ops for Javascript data objects and strings
 
 Just barely getting started. Play with j_ [here.](http://codepen.io/jmellicker/pen/qOmxyY?editors=001)
 
+```
+npm install git@github.com:jmellicker/j_.git
+```
+
 ## string ops
 
 given this string:
