@@ -423,12 +423,11 @@ module.exports = {
     },
     
     secondsToHms: function(pSeconds) {
-        pSeconds = Number(pSeconds);
-        var h = Math.floor(pSeconds / 3600);
-        var m = Math.floor(pSeconds % 3600 / 60);
-        var s = Math.floor(pSeconds % 3600 % 60);
-        k(pSeconds, h, m, s)
-        return ((h > 0 ? h + ":" : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + ":" : "0:") + (s < 10 ? "0" : "") + s);
+        pSeconds = Number(pSeconds)
+        let h = Math.floor(pSeconds / 3600);
+        let m = Math.floor(pSeconds % 3600 / 60)
+        let s = Math.floor(pSeconds % 3600 % 60)
+        return (h < 10 ? '0' + h : h) + ':' + (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s)
     },
     
     hmsToSeconds: function(pHms) {
