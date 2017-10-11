@@ -421,6 +421,20 @@ module.exports = {
         }
         return template
     },
+    
+    secondsToHms: function(pSeconds) {
+        pSeconds = Number(pSeconds);
+        var h = Math.floor(pSeconds / 3600);
+        var m = Math.floor(pSeconds % 3600 / 60);
+        var s = Math.floor(pSeconds % 3600 % 60);
+        k(pSeconds, h, m, s)
+        return ((h > 0 ? h + ":" : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + ":" : "0:") + (s < 10 ? "0" : "") + s);
+    },
+    
+    hmsToSeconds: function(pHms) {
+        tt = pHms.split(":");
+        return tt[0] * 3600 + tt[1] * 60 + tt[2] * 1;
+    },
 
     decodeHtmlEntity: function(str) {
       return str.replace(/&#(\d+);/g, function(match, dec) {
