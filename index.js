@@ -437,9 +437,8 @@ module.exports = {
     
     formatMonthYear: function(s) {
         s = s.replace(/\/|-| |20/g, '')
-        let year = s.slice(-2)
-        let month = s.slice(0, s.length-2)
-        if (month.length === 1) month = '0' + month
+        if (s.length === 3) s = '0' + s
+        return s.slice(0,2) + '/' + s.slice(2,4)
     },
 
     decodeHtmlEntity: function(str) {
