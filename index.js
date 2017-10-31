@@ -436,11 +436,10 @@ module.exports = {
     },
     
     formatMonthYear: function(s) {
-        s = s.replace(/\//g, '')
+        s = s.replace(/\/|-| |20/g, '')
         let year = s.slice(-2)
         let month = s.slice(0, s.length-2)
-        if (month.length === 1) month = 0 + month
-        return month + '/' + year
+        if (month.length === 1) month = '0' + month
     },
 
     decodeHtmlEntity: function(str) {
