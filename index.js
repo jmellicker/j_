@@ -434,6 +434,14 @@ module.exports = {
         tt = pHms.split(":");
         return tt[0] * 3600 + tt[1] * 60 + tt[2] * 1;
     },
+    
+    formatMonthYear: function(s) {
+        s = s.replace(/\//g, '')
+        let year = s.slice(-2)
+        let month = s.slice(0, s.length-2)
+        if (month.length === 1) month = 0 + month
+        return month + '/' + year
+    },
 
     decodeHtmlEntity: function(str) {
       return str.replace(/&#(\d+);/g, function(match, dec) {
