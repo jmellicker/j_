@@ -424,15 +424,15 @@ module.exports = {
     
     secondsToHms: function(pSeconds) {
         pSeconds = Number(pSeconds)
-        let h = Math.floor(pSeconds / 3600);
-        let m = Math.floor(pSeconds % 3600 / 60)
-        let s = Math.floor(pSeconds % 3600 % 60)
+        var h = Math.floor(pSeconds / 3600)
+        var m = Math.floor(pSeconds % 3600 / 60)
+        var s = Math.floor(pSeconds % 3600 % 60)
         return (h < 10 ? '0' + h : h) + ':' + (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s)
     },
     
     hmsToSeconds: function(pHms) {
         tt = pHms.split(":");
-        return tt[0] * 3600 + tt[1] * 60 + tt[2] * 1;
+        return tt[0] * 3600 + tt[1] * 60 + tt[2] * 1
     },
     
     formatMonthYear: function(s) {
@@ -443,13 +443,13 @@ module.exports = {
 
     decodeHtmlEntity: function(str) {
       return str.replace(/&#(\d+);/g, function(match, dec) {
-        return String.fromCharCode(dec);
+        return String.fromCharCode(dec)
       });
     },
 
     decodeHTML: function(html) {
         html = html.replace(/&#(\d+);/g, function(match, dec) {
-            return String.fromCharCode(dec);
+            return String.fromCharCode(dec)
         })
 
         // html = html.replace(/&amp;/g, '&')
