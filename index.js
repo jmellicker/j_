@@ -437,8 +437,8 @@ module.exports = {
     
     formatMonthYear: function(s) {
         var i = 0
-        s = s.replace(/\/|-| |20/g, function(match) { 
-            return match === 20 ? (i++ === 0 ? 20 : '') : ''; 
+        s = s.replace(/\/20|-20| 20|20/g, function(match) {
+            return match === 20 || match === '20' || match === '/20' || match === '-20' || match === ' 20' ? (i++ === 0 ? 20 : '') : ''; 
         })
         if (s.length === 3) s = '0' + s
         return s.slice(0,2) + '/' + s.slice(2,4)
