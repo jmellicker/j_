@@ -102,7 +102,6 @@ module.exports = {
 
         var winners = []
         arr.forEach(function(a) {
-            if (!a || !a[key]) kw(a)
             if (a[key].toLowerCase().indexOf(value.toLowerCase()) > -1) {
                 winners.push(a)
             }
