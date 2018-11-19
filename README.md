@@ -1,92 +1,97 @@
 # j_
 
-semantic ops for Javascript data objects and strings
+it's a toolkit of random and useful functions
 
-Just barely getting started. Play with j_ [here.](http://codepen.io/jmellicker/pen/qOmxyY?editors=001)
+install:
 
-```
-npm install https://github.com/jmellicker/j_.git --save
-```
+    yarn add @jmellicker/j_
 
-## string ops
+---
+
+# string ops
 
 given this string:
 
-```x = 'cat.dog.dolphin.shark'```
+`let x = 'cat.dog.dolphin.shark'`
 
-#### firstItemOf
-```javascript
-firstItemOf(x) // => 'cat'
-```
-#### lastItemOf
-```javascript
-lastItemOf(x) // => 'shark'
-```
-#### nthItemOf
-```javascript
-nthItemOf(x, 3) // => 'dolphin'
-```
-#### allButFirstItemOf
-```javascript
-allButFirstItemOf(x) // => 'dog.dolphin.shark'
-```
-#### allButLastItemOf
-```javascript
-allButLastItemOf(x) // => 'cat.dog.dolphin'
-```
+## firstItemOf
 
-All ops will auto-detect ',' '.' '/' & '|' in that order. For a different delimiter, pass it as the last argument:
+    j_.firstItemOf(x) // => 'cat'
 
-```javascript
-x = 'cat|dog|dolphin|shark'
+## lastItemOf
 
-nthItemOf(x, 2, '|') // => 'dog'
-```
+    j_.lastItemOf(x) // => 'shark'
 
-## array ops
+## nthItemOf
+
+    j_.nthItemOf(x, 3) // => 'dolphin'
+
+## allButFirstItemOf
+
+    j_.allButFirstItemOf(x) // => 'dog.dolphin.shark'
+
+## allButLastItemOf
+
+    j_.allButLastItemOf(x) // => 'cat.dog.dolphin'
+
+## randomItemOf
+
+    j_.randomItemOf(x) // => 'dog' or maybe something else!
+
+All above ops will auto-detect ',' '.' '/' & '|' in that order. For a different delimiter, pass it as the last argument:
+
+    let x = 'cat#dog#dolphin#shark'
+    
+    j_.nthItemOf(x, 2, '#') // => 'dolphin'
+
+## toTitleCase
+
+    j_.toTitleCase(tHIs is wEIrD) // => 'This Is Weird"
+
+---
+
+# array ops
 
 j_ array ops only operate on flat object keys in an array.
 
 Given this array:
 
-```javascript
-xmen = [{
-  name: 'Nightcrawler',
-  power: 'Teleportation'
-}, {
-  name: 'Cyclops',
-  power: 'Optic blast'
-}, {
-  name: 'Rogue',
-  power: 'Absorbing powers'
-}, {
-  name: 'Wolverine',
-  power: 'Regeneration'
-}]
-```
+    let xmen = [{
+      name: 'Nightcrawler',
+      power: 'Teleportation'
+    }, {
+      name: 'Cyclops',
+      power: 'Optic blast'
+    }, {
+      name: 'Rogue',
+      power: 'Absorbing powers'
+    }, {
+      name: 'Wolverine',
+      power: 'Regeneration'
+    }]
 
-#### indexFromArray
+## indexFromArray
+
 Searches an array of objects for a whole value for a specified key and returns the index of the first matching element
 
-```javascript
-indexFromArray(xmen, 'power', 'Optic blast') // => 1
-```
+    j_.indexFromArray(xmen, 'power', 'Optic blast') // => 1
 
-#### queryArrayFirstMatch
+## queryArrayFirstMatch
+
 Searches an array of objects for a whole value for a specified key and returns the first matching array element
 
-```javascript
-queryArrayFirstMatch(xmen, 'power', 'Optic blast') // => { "name": "Cyclops", "power": "Optic blast" }
-```
+    j_.queryArrayFirstMatch(xmen, 'power', 'Optic blast') // => { "name": "Cyclops", "power": "Optic blast" }
 
-#### queryArrayAllMatches
+## queryArrayAllMatches
+
 Searches an array of objects for a whole or partial value for a specified key and returns all matching array elements
 
-```javascript
-queryArrayAllMatches(xmen, 'power', 'po') // => [ { "name": "Nightcrawler", "power": "Teleportation" }, { "name": "Rogue", "power": "Absorbing powers" } ]
-```
-#### sortArrayBy
+    j_.queryArrayAllMatches(xmen, 'power', 'po') // => [ { "name": "Nightcrawler", "power": "Teleportation" }, { "name": "Rogue", "power": "Absorbing powers" } ]
+
+## sortArrayBy
+
 Returns an array of unique keys from an array of objects
 
-#### uniqueKeysFromArray
+## uniqueKeysFromArray
+
 Returns an array of unique keys from an array of objects
