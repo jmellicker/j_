@@ -44,6 +44,18 @@ All above ops will auto-detect ',' '.' '/' & '|' in that order. For a different 
     
     j_.nthItemOf(x, 2, '#') // => 'dolphin'
 
+## removeSpaces
+
+## decodeHTML
+
+## educateQuotes
+
+## replaceHtmlAttributeQuotes
+
+## straightenQuotes
+
+## dashify
+
 ## toTitleCase
 
     j_.toTitleCase(tHIs is wEIrD) // => 'This Is Weird"
@@ -90,8 +102,84 @@ Searches an array of objects for a whole or partial value for a specified key an
 
 ## sortArrayBy
 
-Returns an array of unique keys from an array of objects
+Sorts an array of objects by a key
 
 ## uniqueKeysFromArray
 
 Returns an array of unique keys from an array of objects
+
+## queryArrayAllUniqueValues
+
+## queryArrayOneOfEach
+
+## queryArrayMaxValue
+
+## removeFirstMatchFromArray
+
+## sortArrayBy
+
+## shuffleArray
+
+## removeKeyFromAllArrayObjs
+
+## arrayOfKeyValuesFromObject
+
+## stringOfKeyValuesFromObject
+
+## queryObjectFirstMatch
+
+## removeMatchedObjectsFromArray
+
+## convertObj2array
+
+## mergeObjects
+
+## cloneObject
+
+## sortObjectBy
+
+## addKeyToTopOfObject
+
+## subVars
+
+## createTableFromUnstructuredData
+
+## randomInteger
+
+## randomAlphaNumeric
+
+## randomCrayolaColor
+
+## randomAnimal
+
+## uaid
+
+## ucid
+
+## uniqID
+
+## randomLoadingMessage
+
+## randomSuccessQuote
+
+## validEmailAddress
+
+## luhnCheck
+
+## objSub
+
+## openCleanWindow
+
+## fillCleanWindowWithHTML
+
+## secondsToHms
+
+## hmsToSeconds
+
+## formatMonthYear
+
+## decodeHtmlEntity
+
+## naturalSorter
+
+
