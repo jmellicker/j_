@@ -6,6 +6,9 @@
   "scripts": {
     "release": "release-it"
   },
+  "devDependencies": {
+    "release-it": "*"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jmellicker/j_.git"
