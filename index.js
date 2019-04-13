@@ -82,7 +82,7 @@ module.exports = {
       return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0')
     },
 
-    quoteAndEscapeQuotesIfString: function( str ) {
+    quoteAndEscapeQuotesIfString: function( input ) {
       return typeof input === 'string' ? `'${ (input + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0') }'` : input
     },
 
