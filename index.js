@@ -79,8 +79,12 @@ module.exports = {
     },
 
     escapeQuotes: function( str ) {
-      return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
-    }
+      return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0')
+    },
+
+    quoteAndEscapeQuotesIfString: function( str ) {
+      return typeof input === 'string' ? `'${ (input + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0') }'` : input
+    },
 
     dashify: function (str) {
         str = str.replace(/([a-z])([A-Z])/g, '$1-$2')
