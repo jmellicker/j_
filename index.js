@@ -74,6 +74,10 @@ module.exports = {
 
     },
 
+    quoteIfString: function (input) {
+      return typeof input === 'string' ? `'${ input }'` : input
+    },
+
     dashify: function (str) {
         str = str.replace(/([a-z])([A-Z])/g, '$1-$2')
         str = str.replace(/[ \t\W]/g, '-')
