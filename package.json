@@ -1,6 +1,6 @@
 {
   "name": "@jmellicker/j_",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Helpful JavaScript functions.",
   "main": "index.js",
   "scripts": {
