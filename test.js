@@ -109,3 +109,13 @@ test('escapeQuotes with quotes', () => {
 test('escapeQuotes without quotes', () => {
   expect (j_.escapeQuotes(`Do not worry friend`)).toBe(`Do not worry friend`)
 })
+
+// replaceHtmlAttributeQuotes
+test('replaceHtmlAttributeQuotes with quotes', () => {
+  expect (j_.replaceHtmlAttributeQuotes(`Don't worry "friend"`)).toBe(`Don't worry \"friend\"`)
+})
+
+// addAdditionalSingleQuote
+test('addAdditionalSingleQuote with quotes', () => {
+  expect (j_.addAdditionalSingleQuote(`Don't worry "friend"`)).toBe(`Don''t worry "friend"`)
+})

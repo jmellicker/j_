@@ -56,17 +56,33 @@ module.exports = {
         })
     },
 
+    dashify: function (str) {
+        str = str.replace(/([a-z])([A-Z])/g, '$1-$2')
+        str = str.replace(/[ \t\W]/g, '-')
+        str = str.replace(/^-+|-+$/g, '')
+        return str.toLowerCase()
+    },
+
+    toTitleCase: function(str) {
+        return str.replace(/\w\S*/g, function(txt){
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        })
+    },
+
+    // -------- quote operations -------- //
+
+    replaceHtmlAttributeQuotes: function (string) {
+        return string.replace(/<([^>]+)>/g, function (r) {
+            return r.replace(/\\"/g, "\\'");
+        });
+    },
+
     educateQuotes: function (string) {
         return string.replace(/>([^>]+)</g, function (r) {
             return r.replace(/(>|\s)"/g, "$1“")
                 .replace(/"/g, "”")
                 .replace(/("|\s)'/g, "$1‘")
                 .replace(/'/g, "’");
-        });
-    },
-    replaceHtmlAttributeQuotes: function (string) {
-        return string.replace(/<([^>]+)>/g, function (r) {
-            return r.replace(/\\"/g, "\\'");
         });
     },
 
@@ -83,26 +99,17 @@ module.exports = {
       return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0')
     },
 
-    quoteAndEscapeQuotesIfString: function( input ) {
+    quoteAndEscapeQuotesIfString: function(input) {
       return typeof input === 'string' ? `'${ (input + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0') }'` : input
       return typeof input === 'string' ? this.quoteIfString(this.escapeQuotes(input)) : input
     },
 
-    quoteAndEducateQuotesIfString: function( input ) {
+    quoteAndEducateQuotesIfString: function(input) {
       return typeof input === 'string' ? this.quoteIfString(this.educateQuotes(input)) : input
     },
 
-    dashify: function (str) {
-        str = str.replace(/([a-z])([A-Z])/g, '$1-$2')
-        str = str.replace(/[ \t\W]/g, '-')
-        str = str.replace(/^-+|-+$/g, '')
-        return str.toLowerCase()
-    },
-
-    toTitleCase: function(str) {
-        return str.replace(/\w\S*/g, function(txt){
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        })
+    addAdditionalSingleQuote: function(input) {
+      return input.replace(/'/g, "''")
     },
 
     // -------- array operations -------- //
