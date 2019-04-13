@@ -4,9 +4,11 @@
   "description": "Helpful JavaScript functions.",
   "main": "index.js",
   "scripts": {
-    "release": "release-it"
+    "release": "release-it",
+    "test": "jest"
   },
   "devDependencies": {
+    "jest": "^24.7.1",
     "release-it": "*"
   },
   "repository": {
