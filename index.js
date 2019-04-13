@@ -100,7 +100,7 @@ module.exports = {
     },
 
     quoteAndEscapeQuotesIfString: function(input) {
-      return typeof input === 'string' ? `'${ (input + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0') }'` : input
+      // return typeof input === 'string' ? `'${ (input + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0') }'` : input
       return typeof input === 'string' ? this.quoteIfString(this.escapeQuotes(input)) : input
     },
 
@@ -108,8 +108,8 @@ module.exports = {
       return typeof input === 'string' ? this.quoteIfString(this.educateQuotes(input)) : input
     },
 
-    addAdditionalSingleQuote: function(input) {
-      return input.replace(/'/g, "''")
+    addAdditionalSingleQuoteIfString: function(input) {
+      return typeof input === 'string' ? input.replace(/'/g, "''") : input
     },
 
     // -------- array operations -------- //

@@ -115,7 +115,11 @@ test('replaceHtmlAttributeQuotes with quotes', () => {
   expect (j_.replaceHtmlAttributeQuotes(`Don't worry "friend"`)).toBe(`Don't worry \"friend\"`)
 })
 
-// addAdditionalSingleQuote
-test('addAdditionalSingleQuote with quotes', () => {
-  expect (j_.addAdditionalSingleQuote(`Don't worry "friend"`)).toBe(`Don''t worry "friend"`)
+// addAdditionalSingleQuoteIfString
+test('addAdditionalSingleQuoteIfString with a quote', () => {
+  expect (j_.addAdditionalSingleQuoteIfString(`Don't worry "friend"`)).toBe(`Don''t worry "friend"`)
+})
+
+test('addAdditionalSingleQuoteIfString without a quote', () => {
+  expect (j_.addAdditionalSingleQuoteIfString(808)).toBe(808)
 })
