@@ -78,6 +78,10 @@ module.exports = {
       return typeof input === 'string' ? `'${ input }'` : input
     },
 
+    escapeQuotes: function( str ) {
+      return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+    }
+
     dashify: function (str) {
         str = str.replace(/([a-z])([A-Z])/g, '$1-$2')
         str = str.replace(/[ \t\W]/g, '-')
