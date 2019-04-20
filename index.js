@@ -95,6 +95,10 @@ module.exports = {
       return typeof input === 'string' ? `'${ input }'` : input
     },
 
+    backtickIfString: function (input) {
+      return typeof input === 'string' ? '`' + input + '`' : input
+    },
+
     escapeQuotes: function( str ) {
       return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0')
     },

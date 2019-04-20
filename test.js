@@ -123,3 +123,8 @@ test('addAdditionalSingleQuoteIfString with a quote', () => {
 test('addAdditionalSingleQuoteIfString without a quote', () => {
   expect (j_.addAdditionalSingleQuoteIfString(808)).toBe(808)
 })
+
+// backtickIfString
+test('backtickIfString', () => {
+    expect (j_.backtickIfString(`hi`)).toBe('`hi`')
+})
