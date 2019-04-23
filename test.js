@@ -128,3 +128,8 @@ test('addAdditionalSingleQuoteIfString without a quote', () => {
 test('backtickIfString', () => {
     expect (j_.backtickIfString(`hi`)).toBe('`hi`')
 })
+
+// randomAnimal
+test('backtickIfString', () => {
+    expect (typeof j_.randomAnimal()).toBe('string')
+})
