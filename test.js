@@ -133,3 +133,13 @@ test('backtickIfString', () => {
 test('backtickIfString', () => {
     expect (typeof j_.randomAnimal()).toBe('string')
 })
+
+// decamelize with default separator
+test('decamelize', () => {
+    expect (j_.decamelize('thisIsCool')).toBe('this_is_cool')
+})
+
+// decamelize with space separator
+test('decamelize', () => {
+    expect (j_.decamelize('thisIsCool', ' ')).toBe('this is cool')
+})
