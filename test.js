@@ -143,3 +143,50 @@ test('decamelize', () => {
 test('decamelize', () => {
     expect (j_.decamelize('thisIsCool', ' ')).toBe('this is cool')
 })
+
+// slugify with default separator
+test('slugify', () => {
+  expect(j_.slugify('foo bar baz')).toBe('foo-bar-baz')
+  expect(j_.slugify('foo    bar baz    ')).toBe('foo-bar-baz')
+  expect(j_.slugify('   foo bar baz    ')).toBe('foo-bar-baz')
+})
+
+test('slugify underscore separator', () => {
+  expect(j_.slugify('foo bar baz', '_')).toBe('foo_bar_baz')
+  expect(j_.slugify('foo    bar baz    ', '_')).toBe('foo_bar_baz')
+  expect(j_.slugify('   foo bar baz    ', '_')).toBe('foo_bar_baz')
+})
+
+test('slugify special characters', () => {
+  const sets = [
+      {to: 'a', from: 'ÀÁÂÃÄÅÆĀĂĄẠẢẤẦẨẪẬẮẰẲẴẶ'},
+      {to: 'c', from: 'ÇĆĈČ'},
+      {to: 'd', from: 'ÐĎĐÞ'},
+      {to: 'e', from: 'ÈÉÊËĒĔĖĘĚẸẺẼẾỀỂỄỆ'},
+      {to: 'g', from: 'ĜĞĢǴ'},
+      {to: 'h', from: 'ĤḦ'},
+      {to: 'i', from: 'ÌÍÎÏĨĪĮİỈỊ'},
+      {to: 'j', from: 'Ĵ'},
+      {to: 'ij', from: 'Ĳ'},
+      {to: 'k', from: 'Ķ'},
+      {to: 'l', from: 'ĹĻĽŁ'},
+      {to: 'm', from: 'Ḿ'},
+      {to: 'n', from: 'ÑŃŅŇ'},
+      {to: 'o', from: 'ÒÓÔÕÖØŌŎŐỌỎỐỒỔỖỘỚỜỞỠỢǪǬƠ'},
+      {to: 'oe', from: 'Œ'},
+      {to: 'p', from: 'ṕ'},
+      {to: 'r', from: 'ŔŖŘ'},
+      {to: 's', from: 'ßŚŜŞŠ'},
+      {to: 't', from: 'ŢŤ'},
+      {to: 'u', from: 'ÙÚÛÜŨŪŬŮŰŲỤỦỨỪỬỮỰƯ'},
+      {to: 'w', from: 'ẂŴẀẄ'},
+      {to: 'x', from: 'ẍ'},
+      {to: 'y', from: 'ÝŶŸỲỴỶỸ'},
+      {to: 'z', from: 'ŹŻŽ'},
+  ];
+  sets.forEach(({to, from}) => {
+    from.split('').forEach(char => {
+      expect(j_.slugify(`foo ${char} bar baz`, '_')).toBe(`foo_${to}_bar_baz`)
+    })
+  })
+})
