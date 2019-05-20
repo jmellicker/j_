@@ -143,3 +143,13 @@ test('decamelize', () => {
 test('decamelize', () => {
     expect (j_.decamelize('thisIsCool', ' ')).toBe('this is cool')
 })
+
+// snakeToCamel
+test('snakeToCamel', () => {
+    expect (j_.snakeToCamel('this_is_cool', ' ')).toBe('thisIsCool')
+})
+
+// camelToSnake
+test('camelToSnake', () => {
+    expect (j_.camelToSnake('thisIsCool', ' ')).toBe('this_is_cool')
+})
