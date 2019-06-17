@@ -406,7 +406,7 @@ module.exports = {
 
     randomColor: function() {
         var colors = [ 'aliceblue', 'almond', 'antiquebrass', 'antiquewhite', 'apricot', 'aqua', 'aquamarine', 'asparagus', 'atomictangerine', 'azure', 'bananamania', 'beaver', 'beige', 'bisque', 'bittersweet', 'black', 'blanchedalmond', 'blizzardblue', 'blue', 'bluebell', 'bluegray', 'bluegreen', 'blueviolet', 'blush', 'brickred', 'brown', 'burlywood', 'burntorange', 'burntsienna', 'cadetblue', 'canary', 'caribbeangreen', 'carnationpink', 'cerise', 'cerulean', 'chartreuse', 'chestnut', 'chocolate', 'copper', 'coral', 'cornflower', 'cornflowerblue', 'cornsilk', 'cottoncandy', 'crimson', 'cyan', 'dandelion', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgreen', 'darkgrey', 'darkkhaki', 'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray', 'darkslategrey', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'denim', 'desertsand', 'dimgray', 'dimgrey', 'dodgerblue', 'eggplant', 'electriclime', 'fern', 'firebrick', 'floralwhite', 'forestgreen', 'fuchsia', 'fuzzywuzzy', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'grannysmithapple', 'gray', 'green', 'greenblue', 'greenyellow', 'grey', 'honeydew', 'hotmagenta', 'hotpink', 'inchworm', 'indianred', 'indigo', 'ivory', 'jazzberryjam', 'junglegreen', 'khaki', 'laserlemon', 'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lemonyellow', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightgrey', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightslategrey', 'lightsteelblue', 'lightyellow', 'lime', 'limegreen', 'linen', 'macaroniandcheese', 'magenta', 'magicmint', 'mahogany', 'maize', 'manatee', 'mangotango', 'maroon', 'mauvelous', 'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'melon', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'mountainmeadow', 'mulberry', 'navajowhite', 'navy', 'navyblue', 'neoncarrot', 'oldlace', 'olive', 'olivedrab', 'olivegreen', 'orange', 'orangered', 'orangeyellow', 'orchid', 'outerspace', 'outrageousorange', 'pacificblue', 'palegoldenrod', 'palegreen', 'paleturquoise', 'palevioletred', 'papayawhip', 'peach', 'peachpuff', 'periwinkle', 'peru', 'piggypink', 'pinegreen', 'pink', 'pinkflamingo', 'pinksherbet', 'plum', 'powderblue', 'purple', 'purpleheart', 'purplemountainsmajesty', 'purplepizzazz', 'radicalred', 'rawsienna', 'rawumber', 'razzledazzlerose', 'razzmatazz', 'rebeccapurple', 'red', 'redorange', 'redviolet', 'robineggblue', 'rosybrown', 'royalblue', 'royalpurple', 'saddlebrown', 'salmon', 'sandybrown', 'scarlet', 'seagreen', 'seashell', 'sepia', 'shadow', 'shamrock', 'shockingpink', 'sienna', 'silver', 'skyblue', 'slateblue', 'slategray', 'slategrey', 'snow', 'springgreen', 'steelblue', 'sunglow', 'sunsetorange', 'tan', 'teal', 'tealblue', 'thistle', 'ticklemepink', 'timberwolf', 'tomato', 'tropicalrainforest', 'tumbleweed', 'turquoise', 'turquoiseblue', 'unmellowyellow', 'violet', 'violetblue', 'violetpurple', 'violetred', 'vividtangerine', 'vividviolet', 'wheat', 'white', 'whitesmoke', 'wildblueyonder', 'wildstrawberry', 'wildwatermelon', 'wisteria', 'yellow', 'yellowgreen', 'yelloworange']
-        return colors[Math.floor(Math.random() * crayolaColors.length)]
+        return colors[Math.floor(Math.random() * colors.length)]
     },
 
     randomHexColor: function() {
@@ -426,9 +426,9 @@ module.exports = {
         return firstLetter + '_' + Date.now() + '_' + this.randomAlphaNumeric(8) + '_' + this.randomColor()
     },
 
-    uniqID: function(firstLetter) {
-        firstLetter = firstLetter ? firstLetter : 'u'
-        return firstLetter + '_' + Date.now() + '_' + this.randomAlphaNumeric(8) + '_' + this.randomColor() + '-' + this.randomAnimal()
+    uniqID: function(prefix) {
+        prefix = prefix ? prefix : 'uid'
+        return prefix + '_' + Date.now() + '_' + this.randomAlphaNumeric(8).toLowerCase() + '_' + this.randomColor() + '-' + this.randomAnimal()
     },
 
     randomLoadingMessage: function() {

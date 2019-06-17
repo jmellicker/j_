@@ -199,3 +199,8 @@ test('slugify special characters', () => {
     })
   })
 })
+
+// uniqID
+test('uniqID', () => {
+    expect (j_.uniqID('thisIsCool')).toEqual(expect.stringContaining('thisIsCool'))
+})

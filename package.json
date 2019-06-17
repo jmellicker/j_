@@ -4,7 +4,7 @@
   "description": "Helpful JavaScript functions.",
   "main": "index.js",
   "scripts": {
-    "release": "release-it",
+    "release": "release-it -n",
     "test": "jest"
   },
   "devDependencies": {
