@@ -204,3 +204,29 @@ test('slugify special characters', () => {
 test('uniqID', () => {
     expect (j_.uniqID('thisIsCool')).toEqual(expect.stringContaining('thisIsCool'))
 })
+
+// isPlainObject
+test('isPlainObject', () => {
+    expect (j_.isPlainObject({ hi: 'there' })).toBe(true)
+})
+
+// isPlainObject
+test('isPlainObject', () => {
+    expect (j_.isPlainObject('hi')).toBe(false)
+})
+
+// isPlainObject
+test('isPlainObject', () => {
+    expect (j_.isPlainObject(123)).toBe(false)
+})
+
+// isPlainObject
+test('isPlainObject', () => {
+    expect (j_.isPlainObject(true)).toBe(false)
+})
+
+// isPlainObject
+test('isPlainObject', () => {
+    expect (j_.isPlainObject([ 1, 2, 3 ])).toBe(false)
+})
+

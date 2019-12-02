@@ -256,6 +256,10 @@ module.exports = {
 
     // -------- object operations -------- //
 
+    isPlainObject: function (obj) {
+        return !!obj && (typeof obj === 'object') && Object.getPrototypeOf(obj) === Object.prototype
+    },
+
     arrayOfKeyValuesFromObject: function(obj, key) {
         var arr = []
         Object.keys(obj).forEach(function(k) {
