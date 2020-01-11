@@ -1,4 +1,4 @@
-const j_ = require('./index')
+const j_ = require('../index')
 
 // firstItemOf
 test('firstItemOf comma-delimited', () => {
@@ -228,5 +228,60 @@ test('isPlainObject', () => {
 // isPlainObject
 test('isPlainObject', () => {
     expect (j_.isPlainObject([ 1, 2, 3 ])).toBe(false)
+})
+
+// randomItemOf
+test('randomItemOf', () => {
+  const arr = ['hi','there','you']
+  const res = j_.randomItemOf('hi,there,you')
+  expect(res).toBe(arr.find(r => res === r))
+})
+
+// decodeHTML
+test('decodeHTML', () => {
+  expect (j_.decodeHTML('<script>')).toBe('<script>')
+})
+test('decodeHTML', () => {
+  expect (j_.decodeHTML('&nbsp;')).toBe('&nbsp;')
+})
+test('decodeHTML', () => {
+  expect (j_.decodeHTML('&#222;')).toBe('Þ')
+})
+
+// dashify
+test('dashify', () => {
+  expect (j_.dashify('No Worries')).toBe('no-worries')
+})
+test('dashify', () => {
+  expect (j_.dashify('noWorries')).toBe('no-worries')
+})
+test('dashify', () => {
+  expect (j_.dashify('no-worries')).toBe('no-worries')
+})
+test('dashify', () => {
+  expect (j_.dashify('NoWorries')).toBe('no-worries')
+})
+test('dashify', () => {
+  expect (j_.dashify('No.Worries')).toBe('no-worries')
+})
+test('dashify', () => {
+  expect (j_.dashify('No!Worries')).toBe('no-worries')
+})
+test('dashify', () => {
+  expect (j_.dashify('no_worries')).toBe('no-worries')
+})
+
+// toTitleCase
+test('toTitleCase', () => {
+  expect (j_.toTitleCase('No Worries')).toBe('No Worries')
+})
+test('toTitleCase', () => {
+  expect (j_.toTitleCase('no worries')).toBe('No Worries')
+})
+test('toTitleCase', () => {
+  expect (j_.toTitleCase('no-worries')).toBe('No-worries')
+})
+test('toTitleCase', () => {
+  expect (j_.toTitleCase('no.worries')).toBe('No.worries')
 })
 

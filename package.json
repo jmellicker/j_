@@ -2,13 +2,21 @@
   "name": "@jmellicker/j_",
   "version": "0.0.20",
   "description": "Helpful JavaScript functions.",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint index.js",
     "release": "release-it -n",
     "test": "jest"
   },
   "devDependencies": {
-    "jest": "^24.7.1",
+    "@babel/preset-env": "^7.7.7",
+    "babel-eslint": "^8",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-security": "^1.4.0",
+    "jest": "^24.9.0",
     "release-it": "*"
   },
   "repository": {
