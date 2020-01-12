@@ -330,7 +330,7 @@ test('straightenQuotes', () => {
   expect (j_.straightenQuotes('“thing”')).toBe('\"thing\"')
 })
 test('straightenQuotes', () => {
-  expect (j_.straightenQuotes('“thing”')).toBe('"thing"')
+  expect (j_.straightenQuotes('‘thing‘')).toBe("'thing'")
 })
 
 
