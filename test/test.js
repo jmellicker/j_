@@ -119,7 +119,6 @@ test('replaceHtmlAttributeQuotes with quotes', () => {
 test('addAdditionalSingleQuoteIfString with a quote', () => {
   expect (j_.addAdditionalSingleQuoteIfString(`Don't worry "friend"`)).toBe(`Don''t worry "friend"`)
 })
-
 test('addAdditionalSingleQuoteIfString without a quote', () => {
   expect (j_.addAdditionalSingleQuoteIfString(808)).toBe(808)
 })
@@ -128,9 +127,100 @@ test('addAdditionalSingleQuoteIfString without a quote', () => {
 test('backtickIfString', () => {
     expect (j_.backtickIfString(`hi`)).toBe('`hi`')
 })
+test('backtickIfString', () => {
+  expect (j_.backtickIfString('hi')).toBe('`hi`')
+})
+
+// quoteAndEscapeQuotesIfString
+test('quoteAndEscapeQuotesIfString', () => {
+  expect (j_.quoteAndEscapeQuotesIfString(`hi`)).toBe("'hi'")
+})
+test('quoteAndEscapeQuotesIfString', () => {
+  expect (j_.quoteAndEscapeQuotesIfString("hi")).toBe("'hi'")
+})
+test('quoteAndEscapeQuotesIfString', () => {
+  expect (j_.quoteAndEscapeQuotesIfString("'hi'")).toBe("'\\'hi\\''") // seems wrong
+})
+
+//quoteAndEducateQuotesIfString
+test('quoteAndEducateQuotesIfString', () => {
+  expect (j_.quoteAndEducateQuotesIfString([`hi`])).toStrictEqual(["hi"])
+})
+test('quoteAndEducateQuotesIfString', () => {
+  expect (j_.quoteAndEducateQuotesIfString('hi')).toStrictEqual("'hi'")
+})
+
+//// INDEXES
+//indexFromArray
+test('indexFromArray', () => {
+  const arr = [{me:true, you:true, us:true, them:false}]
+  const key = 'us'
+  const value = true
+  expect (j_.indexFromArray(arr, key, value)).toStrictEqual(0)
+})
+test('indexFromArray', () => {
+  const arr = [{me:true, you:true, us:false, them:false},{me:true, you:true, us:true, them:false}]
+  const key = 'us'
+  const value = true
+  expect (j_.indexFromArray(arr, key, value)).toStrictEqual(1)
+})
+test('indexFromArray', () => {
+  const arr = [{me:true, you:true, us:true, them:false}]
+  const key = 'them'
+  const value = true
+  expect (j_.indexFromArray(arr, key, value)).toStrictEqual(-1)
+})
+
+// indexFromArrayID
+test('indexFromArrayID', () => {
+  const arr = [{id:3, you:true, us:true, them:false},{id:4, you:true, us:true, them:false}]
+  const value = 4
+  expect (j_.indexFromArrayID(arr, value)).toStrictEqual(1)
+})
+
+// queryArrayFirstMatch
+test('queryArrayFirstMatch', () => {
+  const arr = [{id:3, you:true, us:true, them:false},{id:4, you:true, us:true, them:false}]
+  const key = 'them'
+  const value = false
+  expect (j_.queryArrayFirstMatch(arr, key, value)).toStrictEqual({"id": 3, "them": false, "us": true, "you": true})
+})
+
+// queryArrayAllMatches
+test('queryArrayAllMatches', () => {
+  const arr = [{id:3, you:true, us:true, them:false},{id:4, you:true, us:true, them:false},{id:4, you:true, us:true, them:true}]
+  const key = 'them'
+  const value = false
+  expect (j_.queryArrayAllMatches(arr, key, value)).toStrictEqual([{id:3, you:true, us:true, them:false},{id:4, you:true, us:true, them:false}])
+})
+
+// queryArrayAllPartialMatches
+test('queryArrayAllPartialMatches', () => {
+  const arr = [{you:"yes", us:"yes", them:"no"},{you:"yes", us:"no", them:"no"},{you:"yes", us:"yes", them:"yes"}]
+  const key = 'them'
+  const value = 'no'
+  expect (j_.queryArrayAllPartialMatches(arr, key, value)).toStrictEqual([{you:"yes", us:"yes", them:"no"},{you:"yes", us:"no", them:"no"}])
+})
+
+// queryArrayAllUniqueValues
+test('queryArrayAllUniqueValues', () => {
+  const arr = [{you:"yes", us:"yes", them:"no"},{you:"yes", us:"no", them:"no"},{you:"yes", us:"yes", them:"yes"}]
+  const key = 'them'
+  expect (j_.queryArrayAllUniqueValues(arr, key)).toStrictEqual(["no", "yes"])
+})
+
+// queryArrayOneOfEach
+test('queryArrayOneOfEach', () => {
+  const arr = [{you:"yes"},{us:"no", them:"no"},{them:"yes"}]
+  const key = 'them'
+  expect (j_.queryArrayOneOfEach(arr, key)).toStrictEqual({"no": {"them": "no", "us": "no"}, "undefined": {"you": "yes"}, "yes": {"them": "yes"}})
+})
+
+
+
 
 // randomAnimal
-test('backtickIfString', () => {
+test('randomAnimal', () => {
     expect (typeof j_.randomAnimal()).toBe('string')
 })
 
@@ -230,6 +320,26 @@ test('isPlainObject', () => {
     expect (j_.isPlainObject([ 1, 2, 3 ])).toBe(false)
 })
 
+// educateQuotes
+test('educateQuotes', () => {
+  expect (j_.educateQuotes('"thing"')).toBe('\"thing\"')
+})
+
+// straightenQuotes
+test('straightenQuotes', () => {
+  expect (j_.straightenQuotes('“thing”')).toBe('\"thing\"')
+})
+test('straightenQuotes', () => {
+  expect (j_.straightenQuotes('“thing”')).toBe('"thing"')
+})
+
+
+
+
+
+
+
+
 // randomItemOf
 test('randomItemOf', () => {
   const arr = ['hi','there','you']
@@ -284,4 +394,81 @@ test('toTitleCase', () => {
 test('toTitleCase', () => {
   expect (j_.toTitleCase('no.worries')).toBe('No.worries')
 })
+
+// naturalSorter
+test('naturalSorter', () => {
+  expect (j_.naturalSorter('No','Worries')).toBe(-1)
+})
+test('naturalSorter', () => {
+  expect (j_.naturalSorter('Worries', 'No')).toBe(1)
+})
+test('naturalSorter', () => {
+  expect (j_.naturalSorter('No', 'No')).toBe(0)
+})
+test('naturalSorter', () => {
+  expect (j_.naturalSorter('No')).toBe(void 0)
+})
+
+// decodeHtmlEntity
+test('decodeHtmlEntity', () => {
+  expect (j_.decodeHtmlEntity('&#918;')).toBe('Ζ') // this is Zeta, not 'Z'
+})
+test('decodeHtmlEntity', () => {
+  expect (j_.decodeHtmlEntity('&#8721;')).toBe('∑')
+})
+test('decodeHtmlEntity passthrough', () => {
+  expect (j_.decodeHtmlEntity('&#8721;')).toBe('∑')
+})
+
+// formatMonthYear
+test('formatMonthYear', () => {
+  expect (j_.formatMonthYear('12/2020')).toBe('12/20')
+})
+test('formatMonthYear', () => {
+  expect (j_.formatMonthYear('12-2020')).toBe('12/20')
+})
+test('formatMonthYear', () => {
+  expect (j_.formatMonthYear('12 2020')).toBe('12/20')
+})
+test('formatMonthYear', () => {
+  expect (j_.formatMonthYear('2/2020')).toBe('02/20')
+})
+
+// hmsToSeconds
+test('hmsToSeconds', () => {
+  expect (j_.hmsToSeconds('12:23:14')).toBe(44594)
+})
+test('hmsToSeconds', () => {
+  expect (j_.hmsToSeconds('2:23:14')).toBe(8594)
+})
+test('hmsToSeconds', () => {
+  expect (j_.hmsToSeconds('0:23:14')).toBe(1394)
+})
+test('hmsToSeconds', () => {
+  expect (j_.hmsToSeconds('0:03:14')).toBe(194)
+})
+test('hmsToSeconds', () => {
+  expect (j_.hmsToSeconds('0:00:14.5')).toBe(14.5)
+})
+
+// secondsToHms
+test('secondsToHms', () => {
+  expect (j_.secondsToHms(44594)).toBe('12:23:14')
+})
+test('secondsToHms', () => {
+  expect (j_.secondsToHms(494)).toBe('08:14')
+})
+test('secondsToHms', () => {
+  expect (j_.secondsToHms(54)).toBe('00:54')
+})
+test('secondsToHms', () => {
+  expect (j_.secondsToHms(54.5)).toBe('00:54') // unexpected
+})
+
+// objSub
+// test('objSub', () => {
+//   const obj = {me: true, you: true}
+//   const sub = '{{ me: false }}'
+//   expect (j_.objSub(obj, sub)).toStrictEqual({"me": true, "you": true})
+// })
 

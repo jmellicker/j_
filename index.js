@@ -94,7 +94,6 @@ const j_ = {
 
     straightenQuotes: function (string) {
         return string.replace(/[“”]/g, "\"").replace(/[‘’]/g, "'")
-
     },
 
     quoteIfString: function (input) {
@@ -177,10 +176,17 @@ const j_ = {
     },
 
     queryArrayAllPartialMatches: function(arr, key, value) {
+        // this only works with strings
         var winners = []
-        arr.forEach(function(a) {
-            if (a[key].toLowerCase().indexOf(value.toLowerCase()) > -1) {
-                winners.push(a)
+        arr.forEach(a => {
+            if (typeof a[key] === 'string') {
+                if (a[key].toLowerCase().indexOf(value.toLowerCase()) > -1) {
+                    winners.push(a)
+                }
+            } else {
+                if (a[key].indexOf(value) > -1) {
+                    winners.push(a)
+                }
             }
         })
         return winners
@@ -191,7 +197,6 @@ const j_ = {
         arr.forEach(function(a) {
           uniques[a[key]] = true
         })
-
         return Object.keys(uniques)
     },
 
@@ -294,8 +299,8 @@ const j_ = {
         } else {
           return obj[objKeyArray[i]]
         }
-
     },
+
     removeMatchedObjectsFromArray: function(arr, key, valueArr) {
         if (valueArr.constructor !== Array) valueArr = valueArr.split(',')
 
@@ -306,7 +311,6 @@ const j_ = {
                 newArr.push(arr[i])
             }
         }
-
         return newArr
     },
 
@@ -315,9 +319,9 @@ const j_ = {
         Object.keys(obj).forEach(function(key) {
             arr.push(obj[key])
         })
-
         return arr
     },
+
     mergeObjects: function(src, dest) {
         if (src === undefined) return dest
         if (dest === undefined) return src
@@ -339,7 +343,6 @@ const j_ = {
             var key = elem[keyedBy]
             newObj[key] = elem
         })
-
         return newObj
     },
 
@@ -347,7 +350,6 @@ const j_ = {
         Object.keys(obj).forEach(function(k) {
             newKey[k] = obj[k]
         })
-
         return newKey
     },
 
@@ -508,14 +510,15 @@ const j_ = {
     },
 
     fillCleanWindowWithHTML: function(name) {
-        var w = window.open('', name || '', 'width=800,height=800,toolbar=0,menubar=0,location=-100,status=1,scrollbars=1,resizable=1')
-        w.focus()
-
-        return w
+        if (typeof window === 'object' && typeof url === 'string') { // fix for ssr
+            var w = window.open('', name || '', 'width=800,height=800,toolbar=0,menubar=0,location=-100,status=1,scrollbars=1,resizable=1')
+            w.focus()
+            return w
+        }
     },
 
     secondsToHms: function(pSeconds) {
-        pSeconds = Number(pSeconds)
+        var pSeconds = Number(pSeconds)
         var h = Math.floor(pSeconds / 3600)
         var m = Math.floor(pSeconds % 3600 / 60)
         var s = Math.floor(pSeconds % 3600 % 60)
@@ -523,7 +526,7 @@ const j_ = {
     },
 
     hmsToSeconds: function(pHms) {
-        tt = pHms.split(":");
+        var tt = pHms.split(":");
         return tt[0] * 3600 + tt[1] * 60 + tt[2] * 1
     },
 
@@ -543,6 +546,7 @@ const j_ = {
     },
 
     naturalSorter: function(as, bs){
+        if ((!as || !bs) || (!as && !bs)) return void 0
         var a, b, a1, b1, i= 0, n, L,
         // eslint-disable-next-line security/detect-unsafe-regex
         rx=/(\.\d+)|(\d+(\.\d+)?)|([^\d.]+)|(\.\D+)|(\.$)/g;
@@ -590,7 +594,7 @@ const j_ = {
             {to: 'w', from: '[ẂŴẀẄ]'},
             {to: 'x', from: '[ẍ]'},
             {to: 'y', from: '[ÝŶŸỲỴỶỸ]'},
-            {to: 'z', from: '[ŹŻŽ]'},
+            {to: 'z', from: '[ŹŻŽΖ]'},
             {to: '-', from: '[·/_,:;\']'}
         ];
 
