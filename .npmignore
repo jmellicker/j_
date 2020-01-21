@@ -1,0 +1,10 @@
+/coverage/**/*
+
+yarn.lock
+test.js
+doc.md
+
+# dotfiles
+.editorconfig
+.gitignore
+.eslintignore
