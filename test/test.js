@@ -33,6 +33,10 @@ test('lastItemOf slash-delimited', () => {
 test('lastItemOf pipe-delimited', () => {
   expect (j_.lastItemOf('alice|dog')).toBe('dog')
 })
+test('lastItemOf pipe-delimited', () => {
+  expect (j_.lastItemOf('alice')).toBe('alice')
+})
+
 
 // nthItemOf
 test('nthItemOf comma-delimited', () => {
