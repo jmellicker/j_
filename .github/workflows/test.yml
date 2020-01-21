@@ -1,0 +1,23 @@
+name: test library
+
+on: pull_request
+
+jobs:
+  test-j_:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 3
+          node-version: ${{ matrix.node-version }}
+      - name: test
+        timeout-minutes: 15
+        run: |
+            yarn
+            yarn test
