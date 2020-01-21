@@ -285,7 +285,7 @@ const j_ = {
     },
 
     queryObjectFirstMatch: function(obj, key, value) {
-        objKeyArray = Object.keys(obj)
+        var objKeyArray = Object.keys(obj)
 
         var i = -1,
             test = ''
@@ -342,6 +342,7 @@ const j_ = {
         this.sortArrayBy(tempArr, keyToSortBy).forEach(function(elem) {
             var key = elem[keyedBy]
             newObj[key] = elem
+            console.log(key)
         })
         return newObj
     },

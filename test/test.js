@@ -472,3 +472,70 @@ test('secondsToHms', () => {
 //   expect (j_.objSub(obj, sub)).toStrictEqual({"me": true, "you": true})
 // })
 
+// luhnCheck
+test('luhnCheck', () => {
+  expect (j_.luhnCheck('79927398713')).toBe(true)
+})
+test('luhnCheck', () => {
+  expect (j_.luhnCheck('79927398711')).toBe(false)
+})
+test('luhnCheck', () => {
+  expect (j_.luhnCheck('79211')).toBe(false)
+})
+
+// cloneObject
+test('cloneObject', () => {
+  expect (j_.cloneObject('79211')).toBe("79211")
+})
+test('cloneObject', () => {
+  expect (j_.cloneObject({me:'true'})).toStrictEqual({"me": "true"})
+})
+
+// convertObj2array
+test('convertObj2array', () => {
+  const obj = {
+    me: {me :1, you:1},
+    you: {me:3, you:1},
+    us: {me:2, you:1}
+  }
+  expect (j_.convertObj2array(obj)).toStrictEqual([{"me": 1, "you": 1}, {"me": 3, "you": 1}, {"me": 2, "you": 1}])
+})
+
+// arrayOfKeyValuesFromObject
+test('arrayOfKeyValuesFromObject', () => {
+  const obj = {
+    me: {me :1, you:1},
+    you: {me:3, you:1},
+    us: {me:2, you:1}
+  }
+  expect (j_.arrayOfKeyValuesFromObject(obj, 'me')).toStrictEqual([1,3,2])
+})
+
+// stringOfKeyValuesFromObject
+test('stringOfKeyValuesFromObject', () => {
+  const obj = {
+    me: {me :1, you:1},
+    you: {me:3, you:1},
+    us: {me:2, you:1}
+  }
+  expect (j_.stringOfKeyValuesFromObject(obj, 'me')).toStrictEqual("1, 3, 2")
+})
+
+
+// queryObjectFirstMatch
+test('queryObjectFirstMatch', () => {
+  const obj = {
+    me: {me :1, you:1},
+    you: {me:3, you:1},
+    us: {me:2, you:1}
+  }
+  expect (j_.queryObjectFirstMatch(obj, 'me', 3)).toStrictEqual({"me": 3, "you": 1})
+})
+test('queryObjectFirstMatch', () => {
+  const obj = {
+    me: {me :1, you:1},
+    you: {me:3, you:1},
+    us: {me:2, you:1}
+  }
+  expect (j_.queryObjectFirstMatch(obj, 'me', 6)).toStrictEqual(-1)
+})
