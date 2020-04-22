@@ -247,6 +247,11 @@ test('camelToSnake', () => {
     expect (j_.camelToSnake('thisIsCool', ' ')).toBe('this_is_cool')
 })
 
+// camelToSnake
+test('camelToSnake', () => {
+    expect (j_.camelToSnake('stringWith234Numbers', ' ')).toBe('string_with234_numbers')
+})
+
 // slugify with default separator
 test('slugify', () => {
   expect(j_.slugify('foo bar baz')).toBe('foo-bar-baz')
