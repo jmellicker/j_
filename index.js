@@ -447,7 +447,7 @@ const j_ = {
     },
 
     id: function(prefix) {
-        prefix = prefix ? prefix : 'id'
+        prefix = prefix ? prefix : 'i'
         return prefix + this.randomAlphaNumeric(15)
     },
 
