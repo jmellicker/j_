@@ -304,6 +304,11 @@ test('uniqID', () => {
     expect (j_.uniqID('thisIsCool')).toEqual(expect.stringContaining('thisIsCool'))
 })
 
+// id
+test('id', () => {
+  expect (j_.id('u')).toHaveLength(16)
+})
+
 // isPlainObject
 test('isPlainObject', () => {
     expect (j_.isPlainObject({ hi: 'there' })).toBe(true)
