@@ -1,6 +1,6 @@
 {
   "name": "@jmellicker/j_",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "Helpful JavaScript functions.",
   "license": "MIT",
   "main": "index.js",
