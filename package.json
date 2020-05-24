@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js",
-    "release": "release-it -n",
+    "release": "npx release-it --ci",
     "test": "jest"
   },
   "devDependencies": {
