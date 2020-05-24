@@ -553,3 +553,13 @@ test('queryObjectFirstMatch', () => {
   }
   expect (j_.queryObjectFirstMatch(obj, 'me', 6)).toStrictEqual(-1)
 })
+
+// trueFalse
+test('trueFalse', () => {
+  expect(j_.tf({})).toStrictEqual(false)
+  expect(j_.tf([])).toStrictEqual(false)
+  expect(j_.tf('')).toStrictEqual(false)
+  expect(j_.tf({cat: 'dog'})).toStrictEqual(true)
+  expect(j_.tf(['cat'])).toStrictEqual(true)
+  expect(j_.tf('cat')).toStrictEqual(true)
+})
