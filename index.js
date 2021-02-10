@@ -267,6 +267,11 @@ const j_ = {
 
     // -------- object operations -------- //
 
+    get: (nestedObj, path) => {
+        return path.split('.').reduce((obj, key) =>
+            (obj && obj[key] !== 'undefined') ? obj[key] : undefined, nestedObj)
+    },
+
     isPlainObject: function (obj) {
         return !!obj && (typeof obj === 'object') && Object.getPrototypeOf(obj) === Object.prototype
     },

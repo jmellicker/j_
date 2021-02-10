@@ -155,7 +155,7 @@ test('quoteAndEducateQuotesIfString', () => {
 })
 
 //// INDEXES
-//indexFromArray
+// indexFromArray
 test('indexFromArray', () => {
   const arr = [{me:true, you:true, us:true, them:false}]
   const key = 'us'
@@ -346,11 +346,6 @@ test('straightenQuotes', () => {
 test('straightenQuotes', () => {
   expect (j_.straightenQuotes('‘thing‘')).toBe("'thing'")
 })
-
-
-
-
-
 
 
 
@@ -545,6 +540,7 @@ test('queryObjectFirstMatch', () => {
   }
   expect (j_.queryObjectFirstMatch(obj, 'me', 3)).toStrictEqual({"me": 3, "you": 1})
 })
+
 test('queryObjectFirstMatch', () => {
   const obj = {
     me: {me :1, you:1},
@@ -562,4 +558,18 @@ test('trueFalse', () => {
   expect(j_.tf({cat: 'dog'})).toStrictEqual(true)
   expect(j_.tf(['cat'])).toStrictEqual(true)
   expect(j_.tf('cat')).toStrictEqual(true)
+})
+
+test('get', () => {
+  const nestedObj = {
+    devices: {
+      mobile: {
+        ios: 'iphone'
+      }
+    }
+  }
+
+  expect(j_.get(nestedObj, 'devices.mobile.ios')).toStrictEqual('iphone')
+  expect(j_.get(nestedObj, 'devices.desktop.mac')).toBeUndefined()
+
 })
