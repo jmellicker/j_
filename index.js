@@ -634,6 +634,10 @@ const j_ = {
 
     trueFalse: function(val) {
       return !(!val || typeof val === 'object' && !Object.keys(val).length)
+    },
+
+    sleep: function(milliseconds) {
+      return new Promise(resolve => setTimeout(resolve, milliseconds))
     }
 }
 
