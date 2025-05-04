@@ -145,16 +145,13 @@ const j_ = {
     // -------- array operations -------- //
 
     indexFromArray: function(arr, key, value) {
-        var i = -1
-        var test = ''
-
-        while (test !== value && i < arr.length - 1) {
-            i++
-            test = arr[i][key]
-        }
-
-        if (test !== value && i == arr.length - 1) i = -1
-        return i
+      let i = 0
+      const len = arr.length
+      while (i < len) {
+          if (arr[i][key] === value) return i
+          i++
+      }
+      return -1
     },
 
     indexFromArrayID: function(arr, value) {
