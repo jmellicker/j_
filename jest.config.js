@@ -2,11 +2,6 @@ module.exports = {
   globals: {
     __DEV__: true
   },
-  // noStackTrace: true,
-  // bail: true,
-  // cache: false,
-  // verbose: true,
-  // watch: true,
   collectCoverage: true,
   coverageDirectory: '<rootDir>/coverage',
   collectCoverageFrom: [
@@ -28,5 +23,8 @@ module.exports = {
   },
   transform: {
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest'
-  }
+  },
+  testMatch: [
+    '<rootDir>/test/**/*.test.js'
+  ]
 }
