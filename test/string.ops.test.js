@@ -150,6 +150,11 @@ describe('String Operations', () => {
     test('slugify special characters', () => {
         expect(j_.slugify(`foo À bar baz`, '_')).toBe(`foo_a_bar_baz`)
     })
+    test('slugify extended special characters', () => {
+        expect(j_.slugify('Ĵ', '_')).toBe('j')
+        expect(j_.slugify('Ñ', '_')).toBe('n')
+        expect(j_.slugify('Ź', '_')).toBe('z')
+    })
 
     // validEmailAddress (Pared down)
     describe('validEmailAddress', () => {
@@ -184,4 +189,3 @@ describe('String Operations', () => {
     })
 
 })
-

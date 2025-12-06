@@ -69,6 +69,45 @@ describe('Miscellaneous Operations', () => {
         expect(j_.secondsToHms(54.5)).toBe('00:54')
     })
 
+    // timeAgo
+    describe('timeAgo', () => {
+        test('just now', () => {
+            expect(j_.timeAgo(new Date())).toBe('just now')
+        })
+        test('seconds ago', () => {
+            const date = new Date(Date.now() - 10000) // 10 seconds ago
+            expect(j_.timeAgo(date)).toBe('10 seconds ago')
+        })
+        test('minutes ago', () => {
+            const date = new Date(Date.now() - 1000 * 60 * 5) // 5 minutes ago
+            expect(j_.timeAgo(date)).toBe('5 minutes ago')
+        })
+        test('hours ago', () => {
+            const date = new Date(Date.now() - 1000 * 60 * 60 * 2) // 2 hours ago
+            expect(j_.timeAgo(date)).toBe('2 hours ago')
+        })
+        test('days ago', () => {
+            const date = new Date(Date.now() - 1000 * 60 * 60 * 24 * 3) // 3 days ago
+            expect(j_.timeAgo(date)).toBe('3 days ago')
+        })
+        test('months ago', () => {
+            const date = new Date(Date.now() - 1000 * 60 * 60 * 24 * 65) // ~2 months ago
+            expect(j_.timeAgo(date)).toBe('2 months ago')
+        })
+        test('years ago', () => {
+            const date = new Date(Date.now() - 1000 * 60 * 60 * 24 * 365 * 2) // 2 years ago
+            expect(j_.timeAgo(date)).toBe('2 years ago')
+        })
+        test('future seconds', () => {
+            const date = new Date(Date.now() + 10000) // 10 seconds from now
+            expect(j_.timeAgo(date)).toBe('10 seconds from now')
+        })
+        test('future minutes', () => {
+            const date = new Date(Date.now() + 1000 * 60 * 5) // 5 minutes from now
+            expect(j_.timeAgo(date)).toBe('5 minutes from now')
+        })
+    })
+
     // luhnCheck
     test('luhnCheck valid', () => {
         expect(j_.luhnCheck('79927398713')).toBe(true)
@@ -109,5 +148,33 @@ describe('Miscellaneous Operations', () => {
         expect(j_.firstItemOf('cat,dog')).toBe('cat')
     })
 
-})
+    describe('Window Operations', () => {
+        let originalOpen;
+        beforeAll(() => {
+            originalOpen = window.open;
+            delete window.open;
+            window.open = jest.fn(() => ({
+                focus: jest.fn()
+            }));
+        });
+        afterAll(() => {
+            window.open = originalOpen;
+        });
+        beforeEach(() => {
+            window.open.mockClear();
+        });
 
+        test('fillCleanWindowWithHTML should open a window with string name', () => {
+            const win = j_.fillCleanWindowWithHTML('testWindow')
+            expect(window.open).toHaveBeenCalledWith('', 'testWindow', expect.any(String))
+            expect(win).toBeDefined()
+        })
+        
+        test('fillCleanWindowWithHTML should open a window with undefined name', () => {
+            const win = j_.fillCleanWindowWithHTML()
+            expect(window.open).toHaveBeenCalledWith('', '', expect.any(String))
+            expect(win).toBeDefined()
+        })
+    })
+
+})
